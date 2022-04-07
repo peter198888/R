@@ -1,4 +1,3 @@
-/* Style the video: 100% width and height to cover the entire window */
 #myVideo {
     position: fixed;
     right: 0;
@@ -12,7 +11,7 @@
     position: fixed;
     bottom: 0;
     background: rgba(0, 0, 0, 0.992);
-    color: #fffefe;
+    color: #d82020;
     width: 100%;
     padding: 20px;
 }
