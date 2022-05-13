@@ -1,477 +1,186 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.72.0">
-    <title>Multichoice</title>
-
-    <link rel="canonical" href="https://v5.getbootstrap.com/docs/5.0/examples/blog/">
-
-
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: Firefox;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: all;
-            animation-name: heartbeat;
-            animation-duration: 5seconds;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
-
-
-    <!-- Custom styles for this template -->
-    <link href="/login1.html">
-    <!-- Custom styles for this template -->
-    <style>
-        /* stylelint-disable selector-list-comma-newline-after */
-
-        .blog-header {
-            line-height: 2;
-            border-bottom: 4px solid #ec3131;
-        }
-
-        .blog-header-logo {
-            font-family: "Playfair display", Georgia, "Times New Roman", serif;
-            font-size: 2rem;
-        }
-
-        .blog-header-logo:hover {
-            text-decoration: style rgb(230, 20, 20);
-        }
-
-        h6,
-        h5,
-        h4,
-        h3,
-        h2,
-        h1 {
-            font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-        }
-
-        .display-4 {
-            font-size: 2.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .display-4 {
-                font-size: 3rem;
-            }
-        }
-
-        .nav-scroller {
-            position: relative;
-            z-index: 2;
-            height: 2.75rem;
-            overflow-y: hidden;
-        }
-
-        .nav-scroller .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 4rem;
-            margin-top: 1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .nav-scroller .nav-link {
-            padding-top: .75rem;
-            padding-bottom: .75rem;
-            font-size: .875rem;
-            color: rgb(206, 28, 28);
-        }
-
-        .card-img-right {
-            height: 100%;
-            border-radius: 0 3px 3px 0;
-        }
-
-        .flex-auto {
-            flex: 0 0 auto;
-        }
-
-        .h-250 {
-            height: 250px;
-        }
-
-        @media (min-width: 768px) {
-            .h-md-250 {
-                height: 250px;
-            }
-        }
-
-        /* Pagination */
-        .blog-pagination {
-            margin-bottom: 4rem;
-
-        }
-
-        .blog-pagination>.btn {
-            border-radius: 2rem;
-            color: cyan;
-        }
-
-        /*
-        * Blog posts
-        */
-        .blog-post {
-            margin-bottom: 4rem;
-            color: rgb(233, 226, 22);
-        }
-
-        .blog-post-title {
-            margin-bottom: .25rem;
-            font-size: 2.5rem;
-        }
-
-        .blog-post-meta {
-            margin-bottom: 1.25rem;
-            color: #058b2d;
-        }
-
-        /*
-        * Footer
-        */
-        .blog-footer {
-            padding: 2.5rem 0;
-            color: #17e8ec;
-            text-align: center;
-            background-color: #07440a;
-            border-top: .4rem solid #c00f0f;
-        }
-
-        .blog-footer p:last-child {
-            margin-bottom: 0;
-        }
-
-        #myVideo {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-        }
-
-        /* Add some content at the bottom of the video/page */
-        .content {
-            position: fixed;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.992);
-            color: #d82020;
-            width: 100%;
-            padding: 20px;
-        }
-
-        /* Style the button used to pause/play the video */
-        #myBtn {
-            width: 200px;
-            font-size: 18px;
-            padding: 10px;
-            border: none;
-            background: rgb(14, 46, 225);
-            color: rgb(18, 222, 237);
-            cursor: pointer;
-        }
-
-        #myBtn:hover {
-            background: rgb(13, 228, 236);
-            color: rgb(81, 63, 243);
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="container">
-        <header class="blog-header py-3">
-            <div class="row flex-nowrap justify-content-between align-items-center">
-                <div class="col-4 pt-1">
-                    <a class="link-success" href="/me.html">Subscribe</a>
-                </div>
-                <div class="col-4 text-center">
-                    <a class="blog-header-logo text-success" href="#">Multichoice</a>
-                </div>
-                <div class="col-4 d-flex justify-content-end align-items-center">
-                    <a class="link-secondary" href="#" aria-label="Search">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
-                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img"
-                            viewBox="0 0 24 24">
-                            <title>Search</title>
-                            <circle cx="10.5" cy="10.5" r="7.5" />
-                            <path d="M21 21l-5.2-5.2" />
-                        </svg>
-                    </a>
-                    <a class="btn btn-sm btn-outline-success" href="/login.html">Sign up</a>
-
-                </div>
-            </div>
-        </header>
-
-        <div class="nav-scroller py-1 mb-2">
-            <nav class="nav d-grid justify-content-between">
-                <a class="p-2 link-success" href="">Nieuws</a>
-                <a class="p-2 link-success" href="/Suriname.html">Suriname</a>
-                <a class="p-2 link-success" href="">Ontwikkeling</a>
-                <a class="p-2 link-success" href="/login1.html">Design</a>
-                <a class="p-2 link-success" href="#">Cultuur</a>
-                <a class="p-2 link-success" href="#">Business</a>
-                <a class="p-2 link-success" href="#">Politiek</a>
-                <a class="p-2 link-success" href="#">Opinion</a>
-                <a class="p-2 link-success" href="#">Wetenschap</a>
-                <a class="p-2 link-success" href="#">Gezondheid</a>
-                <a class="p-2 link-success" href="#">Style</a>
-                <a class="p-2 link-success" href="#">Travel</a>
-            </nav>
-        </div>
-
-        <div class="p-2 p-md-3 mb-4 text-white rounded bg-danger">
-            <div class="col-md-6 px-4">
-                <h2 class="p-2 link-warning" href="/WhatsApp Image 2021-09-08 at 00.01.53.jpeg">De koning van
-                    Abrakroki
-
-                    </h3>
-                    <q class="lead my-3">Wie Abrabroki bezoekt en niet weet waar het huis van Pa Mori
-                        aan de Cristoffel Kerstenstraat
-                        nummer 9 staat,kan deze informatie van elke willekeurige voorbijganger krijgen.
-
-                        </p>
-                        <a href="/login1.html" class="lead mb-3"><a href="/login1.html"
-                                class="text-white font-weight-bold">Continue
-                                reading...</a></p>
-            </div>
-        </div>
-
-        <div class="row mb-2">
-            <div class="col-md-6">
-                <div
-                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 bg-success position-relative">
-                    <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-warning">World</strong>
-                        <h3 class="mb-xl-4">Featured post</h3>
-                        <div class="mb-1 text-muted">Nov 12</div>
-                        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural
-                            lead-in to additional content.</p>
-                        <a href="#" class="stretched-link">Continue reading</a>
-                    </div>
-                    <div class="col-auto d-none d-lg-block">
-                        <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
-                            aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" role="img"
-                            focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                                dy=".3em">Thumbnail</text>
-                        </svg>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div
-                    class="row gap-lg-5 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div class="col p-sm-4 d-flex flex-column position-absolute">
-                        <strong class="d-inline-block mb-2 text-success">Design</strong>
-                        <h3 class="mb-0">Post title</h3>
-                        <div class="mb-1 text-body">Nov 11</div>
-                        <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to
-                            additional content.</p>
-                        <a href="#" class="stretched-link">Continue reading</a>
-                    </div>
-                    <div class="col-auto d-none d-lg-block">
-                        <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
-                            aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" role="img"
-                            focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                                dy=".3em">Thumbnail</text>
-                        </svg>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <main class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <h3 class="pb-4 mb-4 font-italic bg-danger border-bottom">
-                    From the Firehose
-                </h3>
-
-                <div class="blog-post">
-                    <h2 class="blog-post-title">Sample blog post</h2>
-                    <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
-
-                    <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap.
-                        Basic typography, images, and code are all supported.</p>
-                    <hr>
-                    <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus
-                        mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere
-                        consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-                    <blockquote>
-                        <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong>
-                            ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    </blockquote>
-                    <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet
-                        fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-                    <h2>Heading</h2>
-                    <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non
-                        commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus,
-                        porta ac consectetur ac, vestibulum at eros.</p>
-                    <h3>Sub-heading</h3>
-                    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                    <pre><code>Example code block</code></pre>
-                    <p>Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod.
-                        Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-                    <h3>Sub-heading</h3>
-                    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean
-                        lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce
-                        dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit
-                        amet risus.</p>
-                    <ul>
-                        <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-                        <li>Donec id elit non mi porta gravida at eget metus.</li>
-                        <li>Nulla vitae elit libero, a pharetra augue.</li>
-                    </ul>
-                    <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.
-                    </p>
-                    <ol>
-                        <li>Vestibulum id ligula porta felis euismod semper.</li>
-                        <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
-                        <li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
-                    </ol>
-                    <p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
-                </div><!-- /.blog-post -->
-
-                <div class="blog-post">
-                    <h2 class="blog-post-title">Another blog post</h2>
-                    <p class="blog-post-meta">December 23, 2013 by <a href="#">Jacob</a></p>
-
-                    <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus
-                        mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere
-                        consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-                    <blockquote>
-                        <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong>
-                            ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    </blockquote>
-                    <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet
-                        fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-                    <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non
-                        commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus,
-                        porta ac consectetur ac, vestibulum at eros.</p>
-                </div><!-- /.blog-post -->
-
-                <div class="blog-post">
-                    <h2 class="blog-post-title">New feature</h2>
-                    <p class="blog-post-meta">December 14, 2013 by <a href="#">Chris</a></p>
-
-                    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean
-                        lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce
-                        dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit
-                        amet risus.</p>
-                    <ul>
-                        <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-                        <li>Donec id elit non mi porta gravida at eget metus.</li>
-                        <li>Nulla vitae elit libero, a pharetra augue.</li>
-                    </ul>
-                    <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet
-                        fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-                    <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.
-                    </p>
-                </div><!-- /.blog-post -->
-
-                <nav class="blog-pagination">
-                    <a class="btn btn-outline-primary" href="#">Older</a>
-                    <a class="btn btn-outline-secondary enable" href="#" tabindex="-1" aria-colspan="true">Newer</a>
-
-                </nav>
-
-            </div>
-
-            <aside class="col-md-4">
-                <div class="p-4 mb-3 bg-light risus">
-                    <h4 class="font-italic">About</h4>
-                    <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur
-                        purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-                </div>
-
-                <div class="p-4">
-                    <h4 class="font-italic">Archives</h4>
-                    <ol class="list-group-item-success mb-2">
-                        <li><a href="#">March 2014</a></li>
-                        <li><a href="#">February 2014</a></li>
-                        <li><a href="#">January 2014</a></li>
-                        <li><a href="#">December 2013</a></li>
-                        <li><a href="#">November 2013</a></li>
-                        <li><a href="#">October 2013</a></li>
-                        <li><a href="#">September 2013</a></li>
-                        <li><a href="#">August 2013</a></li>
-                        <li><a href="#">July 2013</a></li>
-                        <li><a href="#">June 2013</a></li>
-                        <li><a href="#">May 2013</a></li>
-                        <li><a href="#">April 2013</a></li>
-                    </ol>
-                </div>
-
-                <div class="u-active-palette-4-dark-3">
-                    <h4 class="font-italic div class=" list-group list-group-flush>
-                        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                            Cras justo odio
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                        <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1"
-                            aria-disabled="true">Vestibulum at eros</a>
-                </div>">Elsewhere</h4>
-                <ol class="list-group-item-primary">
-                    <li><a href="#">GitHub</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Facebook</a></li>
-                </ol>
-        </div>
-        </aside>
-
-        </div><!-- /.row -->
-
-    </main><!-- /.container -->
-
-    <footer class="blog-footer">
-        <p>WEbsite made by ryan <a href="https://getbootstrap.com/">Bootstrap</a> by <a
-                href="https://twitter.com/mdo">@mdo</a>.</p>
-        <p>
-            <a href="#">Back to top</a>
-        </p>
-    </footer>
-
-
-
-</body>
-
-</html>
+
+ <!DOCTYPE html>
+ <html lang="en">
+
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <style>
+         .neonText {
+             color: #fff;
+             text-shadow:
+                 0 0 7px #fff,
+                 0 0 10px #fff,
+                 0 0 21px #fff,
+                 0 0 42px #0fa,
+                 0 0 82px #0fa,
+                 0 0 92px #0fa,
+                 0 0 102px #0fa,
+                 0 0 151px #0fa;
+         }
+
+         /* Additional styling */
+
+         body {
+             font-size: 18px;
+             font-family: "Vibur", sans-serif;
+             background-color: #010a01;
+         }
+
+         h1,
+         h2 {
+             text-align: center;
+             text-transform: uppercase;
+             font-weight: 400;
+         }
+
+         h1 {
+             font-size: 4.2rem;
+         }
+
+         h2 {
+             font-size: 1.8rem;
+         }
+
+         .container {
+             margin-top: 20vh;
+         }
+
+         .neon:hover {
+             color: #101010;
+             background-clip: border-box;
+             box-shadow: -0.5rem -0.25rem 1.5rem #00ff008f,
+                 0.5rem -0.25rem 1.5rem #ffff008f;
+
+
+
+
+
+         }
+
+         @keyframes slidein {
+             from {
+                 margin-left: 100%;
+                 width: 300%;
+             }
+
+             to {
+                 margin-left: 0%;
+                 width: 100%;
+             }
+         }
+
+
+         .neon {
+             animation-duration: 5s;
+             animation-name: slidein;
+             padding: 1.5rem 2.5rem;
+             margin: 1rem 2rem;
+             border-width: 1px;
+             border-style: solid;
+             border-color: #00ff00 #ffff00 #ffff00 #00ff00;
+             font-size: 1.5rem;
+             text-transform: uppercase;
+             cursor: pointer;
+             color: transparent;
+             font-weight: bold;
+             background-image: linear-gradient(to bottom right, #00ff00, #ffff00);
+             background-clip: text;
+             box-shadow: -2px 2px 0. 0.5rem #00ff0086,
+                 2px 2px 0. 0.5rem #00ff0086,
+                 2px 2px 0. 0.5rem #ffff0086,
+                 2px 2px 1. 0.5rem inset #ffff0086;
+
+             ;
+
+
+
+
+
+
+         }
+
+         .neonText {
+             animation-duration: 5s;
+             animation-name: slidein;
+             padding: 1.5rem 2.5rem;
+             margin: 1rem 2rem;
+             border-width: 1px;
+             border-style: solid;
+             border-color: #00ff00 #ffff00 #ffff00 #00ff00;
+             font-size: 1.5rem;
+             text-transform: uppercase;
+             cursor: pointer;
+             color: transparent;
+             font-weight: bold;
+             background-image: linear-gradient(to bottom right, #00ff00, #ffff00);
+             background-clip: text;
+             box-shadow: -2px 2px 0. 0.5rem #00ff0086,
+                 2px 2px 0. 0.5rem #00ff0086,
+                 2px 2px 0. 0.5rem #ffff0086,
+                 2px 2px 1. 0.5rem inset #ffff0086;
+         }
+     </style>
+
+ </head>
+
+ <body>
+     <div class="container">
+         <h1 class="neonText">
+             R&C
+         </h1>
+         <h2 class="neonText">Web&HomeDesign</h2>
+
+
+     </div>
+     <section>
+
+
+         <button class="neon">Shop</button>
+         <button class="neon">Desing</button>
+         <button class="neon">Nieuws</button>
+         <button class="neon">Heren</button>
+         <button class="neon">Dames</button>
+
+
+
+
+         <div class="box"></div>
+
+
+
+
+
+         <button class="neon">Muziek</button>
+         <button class="neon">Cultuur</button>
+
+     </section>
+     <H1>
+         <p>Multichoiche</p>
+     </H1>
+     <section>
+         <button class="neon">Rachel</button>
+         <button class="neon">Style</button>
+         <button class="neon">Level3</button>
+         <button class="neon">Level4</button>
+         <button class="neon">Level5</button>
+
+
+
+
+         <div class="box"></div>
+
+
+
+
+         <button class="neon">Level7</button>
+         <button class="neon">Level8</button>
+
+
+     </section>
+
+ </body>
+
+ </html>
