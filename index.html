@@ -1,4 +1,5 @@
 
+
  <!DOCTYPE html>
  <html lang="en">
 
@@ -11,7 +12,7 @@
          .neonText {
              color: #fff;
              text-shadow:
-                 0 0 7px #fff,
+                 0 0 20px #fff,
                  0 0 10px #fff,
                  0 0 21px #fff,
                  0 0 42px #0fa,
@@ -20,6 +21,7 @@
                  0 0 102px #0fa,
                  0 0 151px #0fa;
          }
+
 
          /* Additional styling */
 
@@ -72,6 +74,141 @@
              }
          }
 
+         .wrapper {
+             height: 100px;
+             width: 360px;
+             cursor: default;
+             background: linear-gradient(135deg, #14ffe9, #ffeb3b, #ff00e0);
+             border-radius: 10px;
+             animation: animate 1.5s linear infinite;
+         }
+
+         .wrapper .display,
+         .wrapper span {
+             position: relative;
+             top: 50%;
+             Left: 50%;
+             transform: translate(-50%, -50%);
+         }
+
+
+         .wrapper .display {
+             z-index: 999;
+             background: #1b1b1b;
+             height: 85px;
+             width: 345px;
+             border-radius: 10px;
+             text-align: center;
+         }
+
+         .wrapper .display #time {
+             line-height: 85px;
+             font-size: 50px;
+             font-weight: 600;
+             letter-spacing: 1px;
+             background: linear-gradient(135deg, #14ffe9, #ffeb3b, #ff00e0);
+             background-clip: text;
+             -webkit-text-fill-color: transparent;
+             animation: animate 1.5s linear infinite;
+         }
+
+         a:hover {
+             background: #03e9f4;
+             color: #050801;
+             box-shadow: 0 0 5px #03e9f4,
+                 0 0 25px #03e9f4,
+                 0 0 50px #03e9f4,
+                 0 0 200px #03e9f4;
+         }
+
+         a span {
+             position: absolute;
+             display: block;
+         }
+
+         a span:nth-child(1) {
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 2px;
+             background: linear-gradient(90deg, transparent, #03e9f4);
+             animation: animate1 1s linear infinite;
+         }
+
+         @keyframes animate1 {
+             0% {
+                 left: -100%;
+             }
+
+             50%,
+             100% {
+                 left: 100%;
+             }
+         }
+
+         a span:nth-child(2) {
+             top: -100px;
+             right: 0;
+             width: 2px;
+             height: 100%;
+             background: linear-gradient(180deg, transparent, #03e9f4);
+             animation: animate2 1s linear infinite;
+             animation-delay: 0.25s;
+         }
+
+         @keyframes animate2 {
+             0% {
+                 top: -100%;
+             }
+
+             50%,
+             100% {
+                 top: 100%;
+             }
+         }
+
+         a span:nth-child(3) {
+             bottom: 0;
+             right: -100%;
+             width: 100%;
+             height: 2px;
+             background: linear-gradient(270deg, transparent, #03e9f4);
+             animation: animate3 1s linear infinite;
+             animation-delay: 0.5s;
+         }
+
+         @keyframes animate3 {
+             0% {
+                 right: -100%;
+             }
+
+             50%,
+             100% {
+                 right: 100%;
+             }
+         }
+
+         a span:nth-child(4) {
+             bottom: -100%;
+             left: 0;
+             width: 2px;
+             height: 100%;
+             background: linear-gradient(360deg, transparent, #03e9f4);
+             animation: animate4 1s linear infinite;
+             animation-delay: 0.75s;
+         }
+
+         @keyframes animate4 {
+             0% {
+                 bottom: -100%;
+             }
+
+             50%,
+             100% {
+                 bottom: 100%;
+             }
+         }
+
 
          .neon {
              animation-duration: 5s;
@@ -99,6 +236,96 @@
 
 
 
+
+         }
+
+         .wrapper {
+             height: 100px;
+             width: 360px;
+             cursor: default;
+             background: linear-gradient(135deg, #14ffe9, #ffeb3b, #ff00e0);
+             border-radius: 10px;
+             animation: animate 1.5s linear infinite;
+         }
+
+         .wrapper .display,
+         .wrapper span {
+             position: relative;
+             top: 50%;
+             Left: 50%;
+             transform: translate(-50%, -50%);
+         }
+
+
+         .wrapper .display {
+             z-index: 999;
+             background: #1b1b1b;
+             height: 85px;
+             width: 345px;
+             border-radius: 10px;
+             text-align: center;
+         }
+
+         .wrapper .display #time {
+             line-height: 85px;
+             font-size: 50px;
+             font-weight: 600;
+             letter-spacing: 1px;
+             background: linear-gradient(135deg, #14ffe9, #ffeb3b, #ff00e0);
+             background-clip: text;
+             -webkit-text-fill-color: transparent;
+             animation: animate 1.5s linear infinite;
+         }
+
+         @keyframes animate {
+             100% {
+                 filter: hue-rotate(360deg);
+             }
+         }
+
+         .wrapper span {
+             height: 100%;
+             width: 100%;
+             background: inherit;
+             border-radius: 10px;
+         }
+
+         .wrapper span:first-child {
+             filter: blur(10px);
+         }
+
+         .wrapper span:last-child {
+             filter: blur(20px);
+         }
+
+         .warning {
+             border: 10px ridge #f00;
+             background-color: #ff0;
+             padding: .5rem;
+             display: flex;
+             flex-direction: column;
+         }
+
+         .warning img {
+             width: 100%;
+         }
+
+         .warning p {
+             font: small-caps bold 1.2rem sans-serif;
+             text-align: center;
+         }
+
+         section {
+             margin: 0;
+             padding: 0;
+             font-family: sans-serif;
+             box-sizing: border-box;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             flex-direction: row;
+             height: 100vh;
+             background-color: #040404;
 
          }
 
@@ -135,51 +362,101 @@
 
 
      </div>
-     <section>
+     <div class="wrapper">
+         <div class="display">
+             <div id="time">12:00:00 PM</div>
+         </div>
+         <span></span>
+         <span></span>
+     </div>
+     <div>
+         <script>
+             setInterval(() => {
+                 const time = document.querySelector("#time")
+                 let date = new Date();
+                 let hours = date.getHours();
+                 let minutes = date.getMinutes();
+                 let seconds = date.getSeconds();
+                 time.textContent = hours + ":" + minutes + ":" + seconds;
+             });
+         </script>
+         <a href="#">
+             <span></span>
+             <span></span>
+             <span></span>
+             <span></span>
+             Neon Button
+         </a>
+
+         <h1 class="neonText">
+             Open <br> All Day
+         </h1>
+         <section>
 
 
-         <button class="neon">Shop</button>
-         <button class="neon">Desing</button>
-         <button class="neon">Nieuws</button>
-         <button class="neon">Heren</button>
-         <button class="neon">Dames</button>
+             <button class="neon">Shop</button>
+             <button class="neon">Desing</button>
+             <button class="neon">Nieuws</button>
+             <button class="neon">Heren</button>
+             <button class="neon">Dames</button>
 
 
 
 
-         <div class="box"></div>
+             <div class="box"></div>
 
 
 
 
 
-         <button class="neon">Muziek</button>
-         <button class="neon">Cultuur</button>
+             <button class="neon">Muziek</button>
+             <button class="neon">Cultuur</button>
 
-     </section>
-     <H1>
-         <p>Multichoiche</p>
-     </H1>
-     <section>
-         <button class="neon">Rachel</button>
-         <button class="neon">Style</button>
-         <button class="neon">Level3</button>
-         <button class="neon">Level4</button>
-         <button class="neon">Level5</button>
-
-
-
-
-         <div class="box"></div>
-
-
-
-
-         <button class="neon">Level7</button>
-         <button class="neon">Level8</button>
+         </section>
+         <a href="#">
+             <span></span>
+             <span></span>
+             <span></span>
+             <span></span>
+             Neon Button
+         </a>
+         <H1>
+             <p>Multichoiche</p>
+         </H1>
+         <section>
+             <button class="neon">Rachel</button>
+             <button class="neon">Style</button>
+             <button class="neon">Level3</button>
+             <button class="neon">Level4</button>
+             <button class="neon">Level5</button>
 
 
-     </section>
+
+
+             <div class="box"></div>
+
+
+
+
+             <button class="neon">Level7</button>
+             <button class="neon">Level8</button>
+
+
+         </section>
+         <div class="container">
+             <h1 class="neonText">
+                 40% off
+             </h1>
+             <h2 class="neonText">Now through Aug. 1</h2>
+
+         </div>
+         <a href="#">
+             <span></span>
+             <span></span>
+             <span></span>
+             <span></span>
+             Neon Button
+         </a>
 
  </body>
 
