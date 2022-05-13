@@ -1,463 +1,132 @@
 
 
- <!DOCTYPE html>
- <html lang="en">
-
- <head>
-     <meta charset="UTF-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Document</title>
-     <style>
-         .neonText {
-             color: #fff;
-             text-shadow:
-                 0 0 20px #fff,
-                 0 0 10px #fff,
-                 0 0 21px #fff,
-                 0 0 42px #0fa,
-                 0 0 82px #0fa,
-                 0 0 92px #0fa,
-                 0 0 102px #0fa,
-                 0 0 151px #0fa;
-         }
-
-
-         /* Additional styling */
-
-         body {
-             font-size: 18px;
-             font-family: "Vibur", sans-serif;
-             background-color: #010a01;
-         }
-
-         h1,
-         h2 {
-             text-align: center;
-             text-transform: uppercase;
-             font-weight: 400;
-         }
-
-         h1 {
-             font-size: 4.2rem;
-         }
-
-         h2 {
-             font-size: 1.8rem;
-         }
-
-         .container {
-             margin-top: 20vh;
-         }
-
-         .neon:hover {
-             color: #101010;
-             background-clip: border-box;
-             box-shadow: -0.5rem -0.25rem 1.5rem #00ff008f,
-                 0.5rem -0.25rem 1.5rem #ffff008f;
-
-
-
-
-
-         }
-
-         @keyframes slidein {
-             from {
-                 margin-left: 100%;
-                 width: 300%;
-             }
-
-             to {
-                 margin-left: 0%;
-                 width: 100%;
-             }
-         }
-
-         .wrapper {
-             height: 100px;
-             width: 360px;
-             cursor: default;
-             background: linear-gradient(135deg, #14ffe9, #ffeb3b, #ff00e0);
-             border-radius: 10px;
-             animation: animate 1.5s linear infinite;
-         }
-
-         .wrapper .display,
-         .wrapper span {
-             position: relative;
-             top: 50%;
-             Left: 50%;
-             transform: translate(-50%, -50%);
-         }
-
-
-         .wrapper .display {
-             z-index: 999;
-             background: #1b1b1b;
-             height: 85px;
-             width: 345px;
-             border-radius: 10px;
-             text-align: center;
-         }
-
-         .wrapper .display #time {
-             line-height: 85px;
-             font-size: 50px;
-             font-weight: 600;
-             letter-spacing: 1px;
-             background: linear-gradient(135deg, #14ffe9, #ffeb3b, #ff00e0);
-             background-clip: text;
-             -webkit-text-fill-color: transparent;
-             animation: animate 1.5s linear infinite;
-         }
-
-         a:hover {
-             background: #03e9f4;
-             color: #050801;
-             box-shadow: 0 0 5px #03e9f4,
-                 0 0 25px #03e9f4,
-                 0 0 50px #03e9f4,
-                 0 0 200px #03e9f4;
-         }
-
-         a span {
-             position: absolute;
-             display: block;
-         }
-
-         a span:nth-child(1) {
-             top: 0;
-             left: 0;
-             width: 100%;
-             height: 2px;
-             background: linear-gradient(90deg, transparent, #03e9f4);
-             animation: animate1 1s linear infinite;
-         }
-
-         @keyframes animate1 {
-             0% {
-                 left: -100%;
-             }
-
-             50%,
-             100% {
-                 left: 100%;
-             }
-         }
-
-         a span:nth-child(2) {
-             top: -100px;
-             right: 0;
-             width: 2px;
-             height: 100%;
-             background: linear-gradient(180deg, transparent, #03e9f4);
-             animation: animate2 1s linear infinite;
-             animation-delay: 0.25s;
-         }
-
-         @keyframes animate2 {
-             0% {
-                 top: -100%;
-             }
-
-             50%,
-             100% {
-                 top: 100%;
-             }
-         }
-
-         a span:nth-child(3) {
-             bottom: 0;
-             right: -100%;
-             width: 100%;
-             height: 2px;
-             background: linear-gradient(270deg, transparent, #03e9f4);
-             animation: animate3 1s linear infinite;
-             animation-delay: 0.5s;
-         }
-
-         @keyframes animate3 {
-             0% {
-                 right: -100%;
-             }
-
-             50%,
-             100% {
-                 right: 100%;
-             }
-         }
-
-         a span:nth-child(4) {
-             bottom: -100%;
-             left: 0;
-             width: 2px;
-             height: 100%;
-             background: linear-gradient(360deg, transparent, #03e9f4);
-             animation: animate4 1s linear infinite;
-             animation-delay: 0.75s;
-         }
-
-         @keyframes animate4 {
-             0% {
-                 bottom: -100%;
-             }
-
-             50%,
-             100% {
-                 bottom: 100%;
-             }
-         }
-
-
-         .neon {
-             animation-duration: 5s;
-             animation-name: slidein;
-             padding: 1.5rem 2.5rem;
-             margin: 1rem 2rem;
-             border-width: 1px;
-             border-style: solid;
-             border-color: #00ff00 #ffff00 #ffff00 #00ff00;
-             font-size: 1.5rem;
-             text-transform: uppercase;
-             cursor: pointer;
-             color: transparent;
-             font-weight: bold;
-             background-image: linear-gradient(to bottom right, #00ff00, #ffff00);
-             background-clip: text;
-             box-shadow: -2px 2px 0. 0.5rem #00ff0086,
-                 2px 2px 0. 0.5rem #00ff0086,
-                 2px 2px 0. 0.5rem #ffff0086,
-                 2px 2px 1. 0.5rem inset #ffff0086;
-
-             ;
-
-
-
-
-
-
-         }
-
-         .wrapper {
-             height: 100px;
-             width: 360px;
-             cursor: default;
-             background: linear-gradient(135deg, #14ffe9, #ffeb3b, #ff00e0);
-             border-radius: 10px;
-             animation: animate 1.5s linear infinite;
-         }
-
-         .wrapper .display,
-         .wrapper span {
-             position: relative;
-             top: 50%;
-             Left: 50%;
-             transform: translate(-50%, -50%);
-         }
-
-
-         .wrapper .display {
-             z-index: 999;
-             background: #1b1b1b;
-             height: 85px;
-             width: 345px;
-             border-radius: 10px;
-             text-align: center;
-         }
-
-         .wrapper .display #time {
-             line-height: 85px;
-             font-size: 50px;
-             font-weight: 600;
-             letter-spacing: 1px;
-             background: linear-gradient(135deg, #14ffe9, #ffeb3b, #ff00e0);
-             background-clip: text;
-             -webkit-text-fill-color: transparent;
-             animation: animate 1.5s linear infinite;
-         }
-
-         @keyframes animate {
-             100% {
-                 filter: hue-rotate(360deg);
-             }
-         }
-
-         .wrapper span {
-             height: 100%;
-             width: 100%;
-             background: inherit;
-             border-radius: 10px;
-         }
-
-         .wrapper span:first-child {
-             filter: blur(10px);
-         }
-
-         .wrapper span:last-child {
-             filter: blur(20px);
-         }
-
-         .warning {
-             border: 10px ridge #f00;
-             background-color: #ff0;
-             padding: .5rem;
-             display: flex;
-             flex-direction: column;
-         }
-
-         .warning img {
-             width: 100%;
-         }
-
-         .warning p {
-             font: small-caps bold 1.2rem sans-serif;
-             text-align: center;
-         }
-
-         section {
-             margin: 0;
-             padding: 0;
-             font-family: sans-serif;
-             box-sizing: border-box;
-             display: flex;
-             justify-content: center;
-             align-items: center;
-             flex-direction: row;
-             height: 100vh;
-             background-color: #040404;
-
-         }
-
-         .neonText {
-             animation-duration: 5s;
-             animation-name: slidein;
-             padding: 1.5rem 2.5rem;
-             margin: 1rem 2rem;
-             border-width: 1px;
-             border-style: solid;
-             border-color: #00ff00 #ffff00 #ffff00 #00ff00;
-             font-size: 1.5rem;
-             text-transform: uppercase;
-             cursor: pointer;
-             color: transparent;
-             font-weight: bold;
-             background-image: linear-gradient(to bottom right, #00ff00, #ffff00);
-             background-clip: text;
-             box-shadow: -2px 2px 0. 0.5rem #00ff0086,
-                 2px 2px 0. 0.5rem #00ff0086,
-                 2px 2px 0. 0.5rem #ffff0086,
-                 2px 2px 1. 0.5rem inset #ffff0086;
-         }
-     </style>
-
- </head>
-
- <body>
-     <div class="container">
-         <h1 class="neonText">
-             R&C
-         </h1>
-         <h2 class="neonText">Web&HomeDesign</h2>
-
-
-     </div>
-     <div class="wrapper">
-         <div class="display">
-             <div id="time">12:00:00 PM</div>
-         </div>
-         <span></span>
-         <span></span>
-     </div>
-     <div>
-         <script>
-             setInterval(() => {
-                 const time = document.querySelector("#time")
-                 let date = new Date();
-                 let hours = date.getHours();
-                 let minutes = date.getMinutes();
-                 let seconds = date.getSeconds();
-                 time.textContent = hours + ":" + minutes + ":" + seconds;
-             });
-         </script>
-         <a href="#">
-             <span></span>
-             <span></span>
-             <span></span>
-             <span></span>
-             Neon Button
-         </a>
-
-         <h1 class="neonText">
-             Open <br> All Day
-         </h1>
-         <section>
-
-
-             <button class="neon">Shop</button>
-             <button class="neon">Desing</button>
-             <button class="neon">Nieuws</button>
-             <button class="neon">Heren</button>
-             <button class="neon">Dames</button>
-
-
-
-
-             <div class="box"></div>
-
-
-
-
-
-             <button class="neon">Muziek</button>
-             <button class="neon">Cultuur</button>
-
-         </section>
-         <a href="#">
-             <span></span>
-             <span></span>
-             <span></span>
-             <span></span>
-             Neon Button
-         </a>
-         <H1>
-             <p>Multichoiche</p>
-         </H1>
-         <section>
-             <button class="neon">Rachel</button>
-             <button class="neon">Style</button>
-             <button class="neon">Level3</button>
-             <button class="neon">Level4</button>
-             <button class="neon">Level5</button>
-
-
-
-
-             <div class="box"></div>
-
-
-
-
-             <button class="neon">Level7</button>
-             <button class="neon">Level8</button>
-
-
-         </section>
-         <div class="container">
-             <h1 class="neonText">
-                 40% off
-             </h1>
-             <h2 class="neonText">Now through Aug. 1</h2>
-
-         </div>
-         <a href="#">
-             <span></span>
-             <span></span>
-             <span></span>
-             <span></span>
-             Neon Button
-         </a>
-
- </body>
-
- </html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politiek</title>
+    <link rel="stylesheet" href="/Style/me.css">
+</head>
+<style>
+    body {
+        background: url(/2022moederdagmasteranimatie0001-0300.mp4);
+        color: rgb(88, 98, 239);
+
+        /* Tekstkleur is groen*/
+
+    }
+
+    p {
+        color: rgb(238, 0, 255);
+        background-color: rgb(0, 153, 255);
+        border-radius: 3px;
+        border-right: 3px;
+    }
+
+    h1,
+    h2 h3 {
+        color: rgb(176, 76, 243);
+        text-align: center;
+        /* Centreer de inhoud*/
+        /* rand: 4 pixels dik, volle rand, kleur oranje*/
+        border-top-left-radius: 50%;
+        border-top-right-radius: 50%;
+        border: 10px solid rgb(0, 162, 255);
+        border-top-style: solid;
+        border-bottom: 3;
+        border-width: 8;
+        border-style: ridge;
+        border-bottom-right-radius: 50%;
+        line-height: 2.5em;
+        line-break: 3.5em;
+        line-clamp: 4%;
+        -webkit-line-break: 8;
+        bottom: 4%;
+        font-size: 50px;
+        font-family: fantasy;
+        font-stretch: 10px;
+        font-display: 4;
+        font-synthesis: 10px;
+        flood-color: darkkhaki;
+        lighting-color: mediumvioletred;
+
+
+    }
+</style>
+
+<body>
+    <ul>
+        <li>Frimangron</li>
+    </ul>
+    <p>Grootgrond bezitter</p>
+    link: <a href="/ADOPEPER10001-0200.mp4" h1>De NPS 1965</h1>
+        Nellius Egbertus Mormon
+        <h3>De Koning Van Abrabroki</h3>
+        <h2>Vereniging Liefde</h2>
+        <h1>Pa Mori Morman</h1>
+
+        <h1>Delfstoffen Suriname</h1>
+        <p>Consessies</p>
+
+        <h1>Over mij:</h1>
+        <p>Verloren gronden <strong>Eigendoms rechten</strong><br>
+            Veel van onze surinamers <strong>Zijn vergeten</strong><br>
+            Wat vele van onze voorouders hebben achtergelaten Hoe
+            Hoe kan het toch zo zijn?
+            :)
+        </p>
+        Vergeten projecten <br>
+        <ul>
+            <li>Waar is de trein gebleven</li>
+            <li>Vergeten spoor naar success</li>
+            <li>Eenzame Fabrieken</li>
+        </ul>
+        <br>
+        Top gerechten Suriname <br>
+        <ol>
+            <li>Bami pitjil</li>
+            <li>Pindasoep</li>
+            <li>Roti</li>
+        </ol>
+        <ul>
+            <li>Kandidatenlijst NPS 1967</li>
+            <li>Propogandist Nelius Egbertus Mormon</li>
+            <li>Een punt op de lijst</li>
+        </ul>
+        <ol>
+            <li>Nummer 1</li>
+            <li>Nummer 2</li>
+            <li>Nummer 3</li>
+        </ol>
+        h1>Toppers Suriprof</h1>
+        <table>
+            <tr>
+                <td>Axell</td>
+                <td>Aantal doelpunten</td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>Naam</td>
+                <td>Aantal doelpunten</td>
+            </tr>
+            <tr>
+                <td>Ryan</td>
+                <td>96</td>
+            </tr>
+            <tr>
+                <td><a href="/8.jpeg">Google</a></td>
+                <td><img src="/8.jpeg"></td>
+                <img width="200px" src="/8.jpeg">
+            </tr>
+
+
+
+        </table>
+
+</body>
+
+</html>
