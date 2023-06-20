@@ -1,833 +1,645 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <meta charset="utf-8" />
 
+    <title>Bingo</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="BingoCard.js"></script>
+    <script type="text/javascript" src="BallDraw.js"></script>
 
     <style>
-        div.demo {
-            width: 250px;
-            height: 250px;
-            box-shadow: 16px 14px 20px #0000008c;
-            border-radius: 10px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        div.demo::before {
-            content: "";
-            /* override the gradient here */
-            background-image: conic-gradient(#ff0052 20deg,
-                    transparent 120deg);
-            width: 150%;
-            height: 150%;
-            position: absolute;
-            animation: rotate 2s linear infinite;
-        }
-
-        div.demo::after {
-            content: "CSSScript";
-            width: 240px;
-            height: 240px;
-            background: #101010;
-            position: absolute;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #ff0052;
-            font-size: larger;
-            letter-spacing: 5px;
-            box-shadow: inset 20px 20px 20px #0000008c;
-        }
-
-        @keyframes rotate {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(-360deg);
-            }
-        }
-
-        html {
-            height: 100%;
-        }
-
         body {
-            margin: 0;
-            padding: 0;
-            font-family: sans-serif;
-            background: linear-gradient(#141e30, #243b55);
-        }
-
-        .login-box {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 400px;
-            padding: 40px;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, .5);
-            box-sizing: border-box;
-            box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
-            border-radius: 10px;
-        }
-
-        .login-box h2 {
-            margin: 0 0 30px;
-            padding: 0;
-            color: #fff;
-            text-align: center;
-        }
-
-        .login-box .user-box {
-            position: relative;
-        }
-
-        .login-box .user-box input {
-            width: 100%;
-            padding: 10px 0;
-            font-size: 16px;
-            color: #fff;
-            margin-bottom: 30px;
-            border: none;
-            border-bottom: 1px solid #fff;
-            outline: none;
-            background: transparent;
-        }
-
-        .login-box .user-box label {
-            position: absolute;
-            top: 0;
-            left: 0;
-            padding: 10px 0;
-            font-size: 16px;
-            color: #fff;
-            pointer-events: none;
-            transition: .5s;
-        }
-
-        .login-box .user-box input:focus~label,
-        .login-box .user-box input:valid~label {
-            top: -20px;
-            left: 0;
-            color: #03e9f4;
-            font-size: 12px;
-        }
-
-        .login-box form a {
-            position: relative;
-            display: inline-block;
-            padding: 10px 20px;
-            color: #03e9f4;
-            font-size: 16px;
-            text-decoration: none;
-            text-transform: uppercase;
-            overflow: hidden;
-            transition: .5s;
-            margin-top: 40px;
-            letter-spacing: 4px
-        }
-
-        .login-box a:hover {
-            background: #03e9f4;
-            color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 5px #03e9f4,
-                0 0 25px #03e9f4,
-                0 0 50px #03e9f4,
-                0 0 100px #03e9f4;
-        }
-
-        .login-box a span {
-            position: absolute;
-            display: block;
-        }
-
-        .login-box a span:nth-child(1) {
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #03e9f4);
-            animation: btn-anim1 1s linear infinite;
-        }
-
-        @keyframes btn-anim1 {
-            0% {
-                left: -100%;
-            }
-
-            50%,
-            100% {
-                left: 100%;
-            }
-        }
-
-        .login-box a span:nth-child(2) {
-            top: -100%;
-            right: 0;
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(180deg, transparent, #03e9f4);
-            animation: btn-anim2 1s linear infinite;
-            animation-delay: .25s
-        }
-
-        body,
-        html {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            background: radial-gradient(ellipse at center, rgb(49, 44, 24) 0%, rgba(0, 0, 0, 0.73) 100%)
-        }
-
-        .container {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .neon {
-            width: 100%;
-            height: auto;
-            animation: flicker 2s linear infinite;
-        }
-
-        .neon svg {
-            width: 100%;
-            height: auto;
-        }
-
-        .off.hideonoff {
-            opacity: 0;
-        }
-
-        .chicken_f2_static.off {
-            stroke: #222;
-        }
-
-        .chicken_f2_glow.off {
-            stroke: none;
-        }
-
-        .chicken_f1_static.off {
-            stroke: #222;
-        }
-
-        .chicken_f1_glow.off {
-            stroke: none;
-        }
-
-        @keyframes flicker {
-            from {
-                opacity: 1;
-            }
-
-            4% {
-                opacity: .9;
-            }
-
-            6% {
-                opacity: .85;
-            }
-
-            8% {
-                opacity: .95;
-            }
-
-            10% {
-                opacity: .90;
-            }
-
-            11% {
-                opacity: .922;
-            }
-
-            12% {
-                opacity: .9;
-            }
-
-            14% {
-                opacity: .95;
-            }
-
-            16% {
-                opacity: .98;
-            }
-
-            17% {
-                opacity: .9;
-            }
-
-            19% {
-                opacity: .93;
-            }
-
-            20% {
-                opacity: .99;
-            }
-
-            24% {
-                opacity: 1;
-            }
-
-            26% {
-                opacity: .94;
-            }
-
-            28% {
-                opacity: .98;
-            }
-
-            37% {
-                opacity: .93;
-            }
-
-            38% {
-                opacity: .5;
-            }
-
-            39% {
-                opacity: .96;
-            }
-
-            42% {
-                opacity: 1;
-            }
-
-            44% {
-                opacity: .97;
-            }
-
-            46% {
-                opacity: .94;
-            }
-
-            56% {
-                opacity: .9;
-            }
-
-            58% {
-                opacity: .9;
-            }
-
-            60% {
-                opacity: .99;
-            }
-
-            68% {
-                opacity: 1;
-            }
-
-            70% {
-                opacity: .9;
-            }
-
-            72% {
-                opacity: .95;
-            }
-
-            93% {
-                opacity: .93;
-            }
-
-            95% {
-                opacity: .95;
-            }
-
-            97% {
-                opacity: .93;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes btn-anim2 {
-            0% {
-                top: -100%;
-            }
-
-            50%,
-            100% {
-                top: 100%;
-            }
-        }
-
-        .login-box a span:nth-child(3) {
-            bottom: 0;
-            right: -100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(270deg, transparent, #03e9f4);
-            animation: btn-anim3 1s linear infinite;
-            animation-delay: .5s
-        }
-
-        @keyframes btn-anim3 {
-            0% {
-                right: -100%;
-            }
-
-            50%,
-            100% {
-                right: 100%;
-            }
-        }
-
-        .login-box a span:nth-child(4) {
-            bottom: -100%;
-            left: 0;
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(360deg, transparent, #03e9f4);
-            animation: btn-anim4 1s linear infinite;
-            animation-delay: .75s
-        }
-
-        @keyframes btn-anim4 {
-            0% {
-                bottom: -100%;
-            }
-
-            50%,
-            100% {
-                bottom: 100%;
-            }
-        }
-
-        html,
-        body {
-            min-height: 100vh;
-            margin: 0;
-        }
-
-        html {
-            background: #090000;
-            font-size: calc(1em + 3vmax);
-            line-height: 1.1;
-            text-align: center;
-        }
-
-        body {
-            display: grid;
-            grid-gap: 1em;
-            grid-template-columns: repeat(auto-fit, minmax(0, 12ch));
-            align-items: center;
+            background: #52F3EA;
+            height: 100vh;
             align-content: center;
-            justify-content: center;
+            overflow: auto;
         }
 
-        x-sign {
-            --interval: 1s;
+        .bingoHeader {
+            font-family: Comic Sans MS, Comic Sans, cursive;
+            font-style: italic;
+            font-style: oblique;
+            font-size: 30px;
+            text-align: center;
+            background-image: url();
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            top: 0px;
+            left: 0px;
+            width: cover;
+            padding: 1rem;
+            display: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .bingoIntro {
+            color: black;
+            font-family: Georgia, Garamonf, Serif;
+            margin-bottom: 2rem;
+            width: 600px;
+            position: absolute;
+            background: #CAD3C8;
+            border-radius: 4px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+            top: 10rem;
+            left: 24rem;
+            text-align: center;
+            padding: 1rem;
+            display: flex;
+            flex-flow: row wrap;
+            height: auto;
+        }
+
+        .genNum {
+            padding-right: 2rem;
+            padding-left: 2rem;
+            margin-left: 11rem;
+            margin-top: 1.5rem;
+            background: #46F0A9;
+            box-shadow: 5px 10px #888888;
+            width: 12rem;
+            border-radius: 10px;
+            height: 9rem;
+        }
+
+        .bingoDesc {
+            background: #DB8079;
+            margin-right: 2rem;
+            margin-left: 2rem;
             display: block;
-            text-shadow:
-                0 0 10px var(--color1),
-                0 0 20px var(--color2),
-                0 0 40px var(--color3),
-                0 0 80px var(--color4);
-            will-change: filter, color;
-            filter: saturate(60%);
-            animation: flicker steps(100) var(--interval) 1s infinite;
+            box-shadow: 5px 10px #888888;
         }
 
-        x-sign:nth-of-type(1) {
-            color: yellow;
-            --color1: goldenrod;
-            --color2: orangered;
-            --color3: mediumblue;
-            --color4: purple;
-            font-family: Gruppo;
+        .winnerCard {
+            background-color: green;
+            margin-left: 8rem;
+            height: auto;
+            display: none;
+            box-shadow: 5px 10px #888888;
+            padding: 1rem;
         }
 
-        x-sign:nth-of-type(2) {
-            color: lightpink;
-            --color1: pink;
-            --color2: orangered;
-            --color3: red;
-            --color4: magenta;
-            font-family: Bad Script;
+        .cloneDiv1 {
+            padding-top: 1rem;
+            border-radius: 5px;
+            background-color: Skyblue;
+            margin-top: 1rem;
+            padding-left: .5rem;
+            padding-right: .5rem;
+            padding-bottom: .5rem;
+            overflow: none;
         }
 
-        x-sign:nth-of-type(3) {
-            color: lightyellow;
-            --color1: yellow;
-            --color2: lime;
-            --color3: green;
-            --color4: mediumblue;
-            font-family: Kumar One Outline;
+        p {
+            text-indent: 10px;
         }
 
-        x-sign:nth-of-type(4) {
-            color: lightyellow;
-            --color1: gold;
-            --color2: firebrick;
-            --color3: pink;
-            --color4: red;
-            font-family: Londrina Outline;
+        th,
+        td {
+            font-family: Serif;
+            margin: 0 auto;
+            text-align: center;
+            border: 3px solid black;
+            width: 20%;
         }
 
 
-        x-sign:nth-of-type(5) {
-            color: azure;
-            --color1: azure;
-            --color2: aqua;
-            --color3: dodgerblue;
-            --color4: blue;
-            font-family: Sriracha;
+        td {
+            padding: 1rem;
+            border: 1px solid black;
         }
 
-        x-sign:nth-of-type(6) {
-            color: tomato;
-            --color1: orangered;
-            --color2: firebrick;
-            --color3: maroon;
-            --color4: darkred;
-            font-family: Yellowtail;
+        .tableContainers {
+            margin-left: 1rem;
+            padding-top: 1rem;
+            padding-left: .5rem;
+            padding-right: .5rem;
+            padding-bottom: .5rem;
+            border-radius: 10px;
+            background-color: green;
+            margin-top: 1rem;
+            width: 300px;
         }
 
-        x-sign:nth-of-type(7) {
-            color: lightyellow;
-            --color1: yellow;
-            --color2: orange;
-            --color3: brown;
-            --color4: purple;
-            font-family: Bad Script;
+        .tables {
+            border-collapse: collapse;
+            text-align: center;
+            background-color: pink;
         }
 
-        x-sign:nth-of-type(8) {
-            color: yellow;
-            --color1: yellow;
-            --color2: lime;
-            --color3: green;
-            --color4: darkgreen;
-            font-family: Monoton;
+        .theads {
+            background-color: maroon;
         }
 
-        x-sign:nth-of-type(9) {
-            color: lightyellow;
-            --color1: yellow;
-            --color2: gold;
-            --color3: orange;
-            --color4: darkred;
-            font-family: Sriracha;
+        .tHeader {
+            color: Apricot;
+            font-family: Georgia, Garamonf, Serif;
         }
 
-        @keyframes flicker {
-            50% {
-                color: white;
-                filter: saturate(200%) hue-rotate(20deg);
-            }
+        .cardPlay {
+            margin-top: 4rem;
+            margin-right: 20rem;
+            margin-left: 4rem;
+            height: auto;
+            display: flex;
+            flex-flow: row wrap;
+            position: absolute;
+        }
+
+
+        .drawBall {
+            position: fixed;
+            margin-left: 70%;
+            right: 25px;
+            top: 13em;
+            bottom: 9rem;
+            width: 250px;
+            background: #079992;
+            text-align: center;
+            border-radius: 20%;
+            display: none;
+        }
+
+        .ballDrawns {
+            background: yellow;
+            border: 1px solid blue;
+            padding: 2rem;
+            border-radius: 50%;
+            width: 50px;
+            margin-left: 4rem;
+        }
+
+        .drawButton {
+            margin-top: .1rem;
+            padding: 1rem;
+            border-radius: 2rem;
+        }
+
+        .genClear {
+
+            position: fixed;
+            margin-left: 70%;
+            top: 75%;
+            right: 20px;
+
+            width: 200px;
+        }
+
+        .numberInput {
+            padding: .5rem;
+            margin-left: 4px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            position: absolute;
+            display: block;
+            border: 1px solid black;
+            background: #eeeeee;
+            outline: none;
+            transition: background 0.2s, border-radius 0.2s;
+        }
+
+        .numberInput:focus {
+            border-color: #009579;
+            background: #ffffff;
+        }
+
+        .generateButton {
+            position: absolute;
+            margin-top: 1.3rem;
+            padding: .5rem;
+            margin-left: 9px;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .clearButton {
+            position: absolute;
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+            padding-left: 3rem;
+            padding-right: 3rem;
+            border-radius: 10px;
+            margin-left: -8rem;
+            margin-top: 4rem;
+        }
+
+        button:hover {
+            background: var(--color-primary-dark);
+            cursor: pointer;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .winnerText {
+            margin-left: 11rem;
+            display: none;
         }
     </style>
+
+
 </head>
 
-<body>
-    <x-sign>
-        OPEN
-    </x-sign>
-    <x-sign>
-        Meld je aan
-    </x-sign>
-    <x-sign>
-        R&C<br>in cans
-    </x-sign>
-    <x-sign>
-        REAL LIVE<br>SHOW
-    </x-sign>
-    <x-sign>
-        <small>GARDEN PARK</small><br>MOTEL
-    </x-sign>
-    <x-sign>
-        Homedesign bij R&C
-        <br><small>Yes&mdash;they are bad</small>
-    </x-sign>
-    <x-sign>
-       24/7 STREAM
-    </x-sign>
-    <x-sign>
-        WIE GA JE BELLEN?
-    </x-sign>
-    <x-sign>
-        18+ Evenementen
-    </x-sign>
-
-
-    <div class="login-box">
-        <h2>Login</h2>
-        <form>
-            <div class="user-box">
-                <input type="text" name="" required="">
-                <label>Username</label>
-            </div>
-            <div class="user-box">
-                <input type="password" name="" required="">
-                <label>Password</label>
-            </div>
-            <a href="#">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                Submit
-            </a>
-        </form>
+<body
+    style="background: url(https://store-images.s-microsoft.com/image/apps.34080.13510798887528624.ea88a7e6-557c-4ad5-99d7-c574f430c827.3c187ff1-754c-409a-9085-8e3aac2d97c5?mode=scale&q=90&h=1080&w=1920)">
+    <div class="bingoHeader" id="bingoHeader">
+        <h1>Lets Play Bingo</h1>
     </div>
-    <div class="demo"></div>
-    <div class="container">
-        <div id="content">
-            <div class="neon">
-
-                <svg width="622px" height="484px" viewBox="-20 -140 722 684" preserveAspectRatio="xMinYMin"
-                    version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-
-                    <!--   Static neon filter for slight blur -->
-                    <filter id="static_blur" x="-50%" y="-50%" width="200%" height="200%" filterUnits="userSpaceOnUse">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="1" />
-                    </filter>
-
-                    <!--   Filter for neon glow -->
-                    <filter id="neon_glow" x="-50%" y="-50%" width="200%" height="200%" filterUnits="userSpaceOnUse">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
-                    </filter>
-
-                    <!--   Start of neon glow -->
-                    <g id="Static_Neon" stroke="none" stroke-width="8" fill="none" fill-rule="evenodd">
-                        <g id="Static_F1" transform="translate(1.000000, 1.000000)" stroke="#979797">
-                            <g id="Yellow_Letters_Glow" filter="url(#neon_glow)" stroke="#F2D02B"
-                                transform="translate(0.000000, 28.000000)">
-                                <path
-                                    d="M203.121094,1.046875 L143.957031,1.046875 L143.957031,83.7460938 L105.65625,83.7460938 L105.65625,1.046875 L46.4375,1.046875 L46.4375,208.65625 L105.65625,208.65625 L105.65625,130.496094 L143.957031,130.496094 L143.957031,208.65625 L203.121094,208.65625 C203.121094,90.0117187 203.121094,27.3958333 203.121094,20.8085938"
-                                    id="H"></path>
-                                <path
-                                    d="M233.667969,57.9804688 C221,81.484375 221,95.3669065 221,101.5 C221,161.97518 270.02482,211 330.5,211 C390.97518,211 440,161.97518 440,101.5 C440,88.2789135 440,76.8085938 429.4375,57.9804688"
-                                    id="Oval"></path>
-                                <path class="chicken_f1_glow off"
-                                    d="M398.964844,22.8164062 C391.707031,10.3528646 382.364583,3.0625 370.9375,0.9453125"
-                                    id="Path-3"></path>
-                                <polyline id="T-ON"
-                                    points="454.019531 4.9140625 451.212891 51.7949219 491.199219 51.7949219 491.199219 208.8125 549.246094 208.8125 549.246094 51.7949219 586.484375 51.7949219 589.960938 4.9140625">
-                                </polyline>
-                                <path
-                                    d="M92.9375,236.507812 C99.4348958,236.135417 107.050781,238 115.785156,242.101563 C124.519531,246.203125 132.763021,251.854818 140.515625,259.056641 C154.485677,270.98763 162.175781,296.94401 163.585938,336.925781 C165.701172,396.898438 155.929688,443.042969 92.9375,452.597656 C29.9453125,462.152344 10.1894531,408.404297 9.3828125,407.59375 C8.57617188,406.783203 -12.8359375,325.755859 12.921875,276.953125 C21.6457506,260.424199 29.5182402,254.506325 39.1367188,248.253906 C45.3462602,244.217441 55.5129269,241.156894 69.6367188,239.072266"
-                                    id="OuterO-ON"></path>
-                                <path
-                                    d="M92.1992188,286.552734 C95.8619792,286.92513 99.016276,289.376953 101.662109,293.908203 C105.630859,300.705078 106.464844,354.259766 105.630859,367.476563 C104.796875,380.693359 102.8125,392.511719 92.1992188,396.591797 C81.5859375,400.671875 71.84375,396.591797 72.1035156,396.591797 C72.252724,396.591797 66.2174437,394.854273 62.5605469,388.222656 C59.8509356,383.308899 59.0805005,374.982696 58.2949219,367.476563 C55.6367188,342.07767 55.3476562,304.625 62.5605469,293.908203 C67.3691406,286.763672 70.5501302,284.311849 72.1035156,286.552734"
-                                    id="InnerO-ON"></path>
-                                <path
-                                    d="M336.054688,241.466797 L285.445312,241.466797 C287.408854,306.582682 287.408854,339.200521 285.445312,339.320312 C283.481771,339.440104 268.791667,306.822266 241.375,241.466797 L184.630859,241.466797 L184.630859,445.029297 L234.804688,445.029297 C233.341146,384.929036 233.341146,354.732422 234.804688,354.439453 C236.268229,354.146484 251.53125,384.343099 280.59375,445.029297 L336.054688,445.029297 L336.054688,260.476562"
-                                    id="N-ON"></path>
-                                <polyline id="E-ON"
-                                    points="473.964844 241.394531 357.222656 241.394531 357.222656 447.275391 470.15625 447.275391 473.964844 401.384766 415.59375 401.384766 415.59375 367.990234 463.0625 367.990234 463.0625 323.361328 415.59375 323.361328 415.59375 292.001953 470.15625 292.001953 473.964844 259.589844">
-                                </polyline>
-                                <path
-                                    d="M616.195313,244.326172 C577.346354,236.802734 551.402344,234.921875 538.363281,238.683594 C525.324219,242.445312 513.919922,248.759115 504.150391,257.625 C495.781901,266.393229 490.914714,279.397786 489.548828,296.638672 C487.5,322.5 506,341.294922 509,345.5 C512,349.705078 532.365234,367.761719 549.125,376.861328 C560.298177,382.927734 564.305339,389.707031 561.146484,397.199219 C556.705078,402.36849 549.811849,404.309245 540.466797,403.021484 C526.449219,401.089844 501,389 498.632813,392.410156 C496.265625,395.820312 491.484375,436.820312 495.058594,441.660156 C498.632813,446.5 525.316406,450.519531 540.466797,451.070313 C555.617188,451.621094 582.300781,452.912109 601.402344,437.589844 C614.136719,427.375 620.503906,411.406901 620.503906,389.685547 C620.210938,370.603516 616.005859,356.139974 607.888672,346.294922 C599.771484,336.44987 582.135927,324.920573 554.981999,311.707031 C547.172667,307.75 545.220334,302.727214 549.125,296.638672 C553.029666,290.55013 560.477583,288.451823 571.46875,290.34375 C592.00651,294.540365 604.146484,296.638672 607.888672,296.638672 C611.630859,296.638672 613.501953,285.283203 613.501953,262.572266"
-                                    id="S-ON"></path>
-                            </g>
-                            <g id="White_Head_Glow" filter="url(#neon_glow)" stroke="#fefefe"
-                                transform="translate(269.000000, 40.000000)">
-                                <path
-                                    d="M128.724609,141.830078 C103.53125,114.599609 95.1334635,88.7395833 103.53125,64.25"
-                                    id="Path-5"></path>
-                                <path
-                                    d="M12.3359375,162.675781 C14.6653646,139.789063 14.6653646,122.611979 12.3359375,111.144531 C10.0065104,99.6770833 6.6015625,87.8183594 2.12109375,75.5683594 C-1.60677083,51.9628906 1.79817708,33.5605469 12.3359375,20.3613281 C22.8736979,7.16210937 40.9095052,0.5625 66.4433594,0.5625 C76.9238281,1.76171875 84.8248698,6.74934896 90.1464844,15.5253906"
-                                    id="Path-7"></path>
-                            </g>
-                            <g id="Gobbler_Glow" filter="url(#neon_glow)" stroke="#DC0000"
-                                transform="translate(262.000000, 0.000000)">
-                                <path
-                                    d="M131.685547,108.919922 C129.475911,111.621745 129.475911,114.89388 131.685547,118.736328 C135,124.5 139.250307,125.212377 137.5,130 C135.749693,134.787623 127.383855,139.517267 125.9375,134.458984"
-                                    id="Path-9"></path>
-                                <path
-                                    d="M69.7988281,19.7285156 C64.2923177,9.76888021 57.7154948,3.57617187 50.0683594,1.15039062 C42.421224,-1.27539063 36.6686198,1.82096354 32.8105469,10.4394531 C31.2207031,14.000651 30.4466146,17.0970052 30.4882813,19.7285156 C30.5507812,23.6757813 18.3398437,11.9785156 8.14648437,19.7285156 C1.35091146,24.8951823 -0.916015625,30.9375 1.34570312,37.8554688 C1.35742187,43.3528646 3.62434896,47.7167969 8.14648437,50.9472656"
-                                    id="Path-11"></path>
-                            </g>
-                        </g>
-                    </g>
-                    <!-- End of neon glow -->
-                    <!--   Start of static neon -->
-                    <g id="Static_Neon" stroke="none" stroke-width="6" fill="none" fill-rule="evenodd">
-                        <g id="Static_F1" transform="translate(1.000000, 1.000000)" stroke="#979797">
-                            <g id="Yellow_Letters" filter="url(#static_blur)" stroke="#FFF19B"
-                                transform="translate(0.000000, 28.000000)">
-                                <path
-                                    d="M203.121094,1.046875 L143.957031,1.046875 L143.957031,83.7460938 L105.65625,83.7460938 L105.65625,1.046875 L46.4375,1.046875 L46.4375,208.65625 L105.65625,208.65625 L105.65625,130.496094 L143.957031,130.496094 L143.957031,208.65625 L203.121094,208.65625 C203.121094,90.0117187 203.121094,27.3958333 203.121094,20.8085938"
-                                    id="H"></path>
-                                <path
-                                    d="M233.667969,57.9804688 C221,81.484375 221,95.3669065 221,101.5 C221,161.97518 270.02482,211 330.5,211 C390.97518,211 440,161.97518 440,101.5 C440,88.2789135 440,76.8085938 429.4375,57.9804688"
-                                    id="Oval"></path>
-                                <path class="chicken_f1_static off"
-                                    d="M398.964844,22.8164062 C391.707031,10.3528646 382.364583,3.0625 370.9375,0.9453125"
-                                    id="Path-3"></path>
-                                <polyline id="T-ON"
-                                    points="454.019531 4.9140625 451.212891 51.7949219 491.199219 51.7949219 491.199219 208.8125 549.246094 208.8125 549.246094 51.7949219 586.484375 51.7949219 589.960938 4.9140625">
-                                </polyline>
-                                <path
-                                    d="M92.9375,236.507812 C99.4348958,236.135417 107.050781,238 115.785156,242.101563 C124.519531,246.203125 132.763021,251.854818 140.515625,259.056641 C154.485677,270.98763 162.175781,296.94401 163.585938,336.925781 C165.701172,396.898438 155.929688,443.042969 92.9375,452.597656 C29.9453125,462.152344 10.1894531,408.404297 9.3828125,407.59375 C8.57617188,406.783203 -12.8359375,325.755859 12.921875,276.953125 C21.6457506,260.424199 29.5182402,254.506325 39.1367188,248.253906 C45.3462602,244.217441 55.5129269,241.156894 69.6367188,239.072266"
-                                    id="OuterO-ON"></path>
-                                <path
-                                    d="M92.1992188,286.552734 C95.8619792,286.92513 99.016276,289.376953 101.662109,293.908203 C105.630859,300.705078 106.464844,354.259766 105.630859,367.476563 C104.796875,380.693359 102.8125,392.511719 92.1992188,396.591797 C81.5859375,400.671875 71.84375,396.591797 72.1035156,396.591797 C72.252724,396.591797 66.2174437,394.854273 62.5605469,388.222656 C59.8509356,383.308899 59.0805005,374.982696 58.2949219,367.476563 C55.6367188,342.07767 55.3476562,304.625 62.5605469,293.908203 C67.3691406,286.763672 70.5501302,284.311849 72.1035156,286.552734"
-                                    id="InnerO-ON"></path>
-                                <path
-                                    d="M336.054688,241.466797 L285.445312,241.466797 C287.408854,306.582682 287.408854,339.200521 285.445312,339.320312 C283.481771,339.440104 268.791667,306.822266 241.375,241.466797 L184.630859,241.466797 L184.630859,445.029297 L234.804688,445.029297 C233.341146,384.929036 233.341146,354.732422 234.804688,354.439453 C236.268229,354.146484 251.53125,384.343099 280.59375,445.029297 L336.054688,445.029297 L336.054688,260.476562"
-                                    id="N-ON"></path>
-                                <polyline id="E-ON"
-                                    points="473.964844 241.394531 357.222656 241.394531 357.222656 447.275391 470.15625 447.275391 473.964844 401.384766 415.59375 401.384766 415.59375 367.990234 463.0625 367.990234 463.0625 323.361328 415.59375 323.361328 415.59375 292.001953 470.15625 292.001953 473.964844 259.589844">
-                                </polyline>
-                                <path
-                                    d="M616.195313,244.326172 C577.346354,236.802734 551.402344,234.921875 538.363281,238.683594 C525.324219,242.445312 513.919922,248.759115 504.150391,257.625 C495.781901,266.393229 490.914714,279.397786 489.548828,296.638672 C487.5,322.5 506,341.294922 509,345.5 C512,349.705078 532.365234,367.761719 549.125,376.861328 C560.298177,382.927734 564.305339,389.707031 561.146484,397.199219 C556.705078,402.36849 549.811849,404.309245 540.466797,403.021484 C526.449219,401.089844 501,389 498.632813,392.410156 C496.265625,395.820312 491.484375,436.820312 495.058594,441.660156 C498.632813,446.5 525.316406,450.519531 540.466797,451.070313 C555.617188,451.621094 582.300781,452.912109 601.402344,437.589844 C614.136719,427.375 620.503906,411.406901 620.503906,389.685547 C620.210938,370.603516 616.005859,356.139974 607.888672,346.294922 C599.771484,336.44987 582.135927,324.920573 554.981999,311.707031 C547.172667,307.75 545.220334,302.727214 549.125,296.638672 C553.029666,290.55013 560.477583,288.451823 571.46875,290.34375 C592.00651,294.540365 604.146484,296.638672 607.888672,296.638672 C611.630859,296.638672 613.501953,285.283203 613.501953,262.572266"
-                                    id="S-ON"></path>
-                            </g>
-                            <g id="White_Head" filter="url(#static_blur)" stroke="#fefefe"
-                                transform="translate(269.000000, 40.000000)">
-                                <path
-                                    d="M128.724609,141.830078 C103.53125,114.599609 95.1334635,88.7395833 103.53125,64.25"
-                                    id="Path-5"></path>
-                                <path
-                                    d="M12.3359375,162.675781 C14.6653646,139.789063 14.6653646,122.611979 12.3359375,111.144531 C10.0065104,99.6770833 6.6015625,87.8183594 2.12109375,75.5683594 C-1.60677083,51.9628906 1.79817708,33.5605469 12.3359375,20.3613281 C22.8736979,7.16210937 40.9095052,0.5625 66.4433594,0.5625 C76.9238281,1.76171875 84.8248698,6.74934896 90.1464844,15.5253906"
-                                    id="Path-7"></path>
-                            </g>
-                            <g id="Gobbler" filter="url(#static_blur)" stroke="#FF6300"
-                                transform="translate(262.000000, 0.000000)">
-                                <path
-                                    d="M131.685547,108.919922 C129.475911,111.621745 129.475911,114.89388 131.685547,118.736328 C135,124.5 139.250307,125.212377 137.5,130 C135.749693,134.787623 127.383855,139.517267 125.9375,134.458984"
-                                    id="Path-9"></path>
-                                <path
-                                    d="M69.7988281,19.7285156 C64.2923177,9.76888021 57.7154948,3.57617187 50.0683594,1.15039062 C42.421224,-1.27539063 36.6686198,1.82096354 32.8105469,10.4394531 C31.2207031,14.000651 30.4466146,17.0970052 30.4882813,19.7285156 C30.5507812,23.6757813 18.3398437,11.9785156 8.14648437,19.7285156 C1.35091146,24.8951823 -0.916015625,30.9375 1.34570312,37.8554688 C1.35742187,43.3528646 3.62434896,47.7167969 8.14648437,50.9472656"
-                                    id="Path-11"></path>
-                            </g>
-                        </g>
-                    </g>
-                    <!--   End of static neon -->
-
-                    <!--   Start of chicken f1 on -->
-                    <!--           Neon glow -->
-                    <g id="Chicken-F1-GLOW" class="chicken_f1_glow off" fill="none" filter="url(#neon_glow)"
-                        stroke="#F2D02B" stroke-width="5" transform="translate(316.000000, 0.000000)">
-                        <path
-                            d="M55.2773438,66.6484375 C77.3864673,70.5517123 88.7940193,74.3355664 89.5,78 C90.558971,83.4966503 82.2109375,83.5195312 59.828125,90.2695312"
-                            id="Path-2"></path>
-                        <path d="M58.03125,95.3789062 L88.8867188,90.5546875" id="Path-4"></path>
-                        <circle id="Eye-ON" cx="15" cy="88" r="15"></circle>
-                        <path d="M260.507812,35.796875 L153.59375,35.796875" id="TTop-ON"></path>
-                        <path stroke="#DC0000" class="chicken_f1_glow off"
-                            d="M38.3964844,27.25 C40.1191406,17.140625 40.1191406,10.156901 38.3964844,6.29882812 C36.6738281,2.44075521 31.671875,0.51171875 23.390625,0.51171875"
-                            id="Path-10"></path>
-                    </g>
-                    <!--   Chicken on static neon -->
-                    <g id="Chicken-F1-ON" class="chicken_f1_static off" filter="url(#static_blur)" fill="none"
-                        stroke="#FFF19B" stroke-width="5" transform="translate(316.000000, 0.000000)">
-                        <path
-                            d="M55.2773438,66.6484375 C77.3864673,70.5517123 88.7940193,74.3355664 89.5,78 C90.558971,83.4966503 82.2109375,83.5195312 59.828125,90.2695312"
-                            id="Path-2"></path>
-                        <path d="M58.03125,95.3789062 L88.8867188,90.5546875" id="Path-4"></path>
-                        <circle id="Eye-ON" cx="15" cy="88" r="15"></circle>
-                        <path d="M260.507812,35.796875 L153.59375,35.796875" id="TTop-ON"></path>
-                        <path class="chicken_f1_static off" stroke="#FF6300"
-                            d="M38.3964844,27.25 C40.1191406,17.140625 40.1191406,10.156901 38.3964844,6.29882812 C36.6738281,2.44075521 31.671875,0.51171875 23.390625,0.51171875"
-                            id="Path-10"></path>
-                    </g>
-                    <!--   End of chicken f1 on -->
-
-                    <!-- Start of chicken f2 -->
-                    <!--   Chicken f2 glow -->
-                    <g id="Chicken-F2-GLOW" filter="url(#neon_glow)" class="chicken_f2_glow" stroke="#DC0000"
-                        fill="none" transform="translate(239.000000, -128)" stroke-width="5" stroke="#979797">
-                        <path
-                            d="M21.5,205 C11.8333333,205 5.33333333,201.333333 2,194 C-1.33333333,186.666667 1.91666667,181.166667 11.75,177.5"
-                            id="Path-6"></path>
-                        <path d="M177,209 L195,201.5" id="Path-8"></path>
-                        <path
-                            d="M167,194 C181.333333,180 190.166667,169.666667 193.5,163 C196.833333,156.333333 201.5,146.333333 207.5,133 C222.5,108 231.166667,92.6666667 233.5,87 C237,78.5 238.458395,63.3929098 241.5,66 C244.541605,68.6070902 243.5,91.5 244,96 C244.5,100.5 237.657261,114.211618 241.5,113.5 C245.342739,112.788382 255,100 257.5,93.5 C259.166667,89.1666667 267.666667,80.8333333 283,68.5 C305,55.8333333 316.833333,48.8333333 318.5,47.5 C321,45.5 337,29 340,25.5 C343,22 344.797307,9.37845449 345.5,15 C346.202693,20.6215455 344,35.5 342,41.5 C340,47.5 328.012447,60.5124469 331,63.5 C333.987553,66.4875531 350,57 355,54.5 C360,52 377,36 380,35 C383,34 399.5,20 401.5,14.5 C403.5,9 410.981242,-3.94275453 412,2 C413.018758,7.94275453 410.5,23.5 407.5,32.5 C405.5,38.5 399.166667,48.8333333 388.5,63.5 C382.166667,71.8333333 378.166667,77.3333333 376.5,80 C374.833333,82.6666667 384.166667,78.8333333 404.5,68.5 C415.5,59.8333333 422.5,54.1666667 425.5,51.5 C428.5,48.8333333 423.333333,60.6666667 410,87 C399,100.666667 392.666667,108.166667 391,109.5 C388.5,111.5 378.5,120 376.5,121.5 C375.166667,122.5 373.333333,127 371,135"
-                            id="Path-12"></path>
-                        <path
-                            d="M215.5,148 C223.833333,137.666667 234.5,132 247.5,131 C267,129.5 270,132 276.5,129.5 C283,127 293.579955,110.424424 296,111.5 C298.420045,112.575576 285.5,130 285.5,133.5 C285.5,137 289.867584,137.677831 299.5,134 C305.921611,131.548112 310.254944,128.381446 312.5,124.5 L333,105 C344.930979,95.1634681 350.264312,91.9968014 349,95.5 C347.103532,100.754798 335,115.979167 328.5,121.739583 C322,127.5 324.164944,134.563552 326,137 C327.835056,139.436448 334,141 341.5,139 C349,137 358.788819,115.929606 362,117 C365.211181,118.070394 351.5,143.5 353.5,145.5"
-                            id="Path-13"></path>
-                        <g id="Chicken_F2_GLOW" class="chicken_f2_glow" stroke="#FFF19B"
-                            transform="translate(123.000000, 175.000000)">
-                            <path d="M21,46 L49,54" id="Path-16"></path>
-                            <path
-                                d="M17,29 C30.5193679,13.9343256 35.8527012,5.10099232 33,2.5 C28.7209481,-1.40148847 16.5,-2 0,13.5"
-                                id="Path-17"></path>
-                        </g>
-                        <g id="X-EYE" class="chicken_f2_glow" stroke="#FFF19B"
-                            transform="translate(77.000000, 202.000000)">
-                            <path d="M30,21 L0.5,6.5" id="Path-14"></path>
-                            <path d="M22.5,0.5 L8,26" id="Path-15"></path>
-                        </g>
-                    </g>
-                    <!--   End of f2 glow -->
-                    <g id="Chicken-F2-STATIC" class="chicken_f2_static" filter="url(#static_blur)" stroke="#FF6300"
-                        fill="none" transform="translate(239.000000, -128)" stroke-width="5">
-                        <path
-                            d="M21.5,205 C11.8333333,205 5.33333333,201.333333 2,194 C-1.33333333,186.666667 1.91666667,181.166667 11.75,177.5"
-                            id="Path-6"></path>
-                        <path d="M177,209 L195,201.5" id="Path-8"></path>
-                        <path
-                            d="M167,194 C181.333333,180 190.166667,169.666667 193.5,163 C196.833333,156.333333 201.5,146.333333 207.5,133 C222.5,108 231.166667,92.6666667 233.5,87 C237,78.5 238.458395,63.3929098 241.5,66 C244.541605,68.6070902 243.5,91.5 244,96 C244.5,100.5 237.657261,114.211618 241.5,113.5 C245.342739,112.788382 255,100 257.5,93.5 C259.166667,89.1666667 267.666667,80.8333333 283,68.5 C305,55.8333333 316.833333,48.8333333 318.5,47.5 C321,45.5 337,29 340,25.5 C343,22 344.797307,9.37845449 345.5,15 C346.202693,20.6215455 344,35.5 342,41.5 C340,47.5 328.012447,60.5124469 331,63.5 C333.987553,66.4875531 350,57 355,54.5 C360,52 377,36 380,35 C383,34 399.5,20 401.5,14.5 C403.5,9 410.981242,-3.94275453 412,2 C413.018758,7.94275453 410.5,23.5 407.5,32.5 C405.5,38.5 399.166667,48.8333333 388.5,63.5 C382.166667,71.8333333 378.166667,77.3333333 376.5,80 C374.833333,82.6666667 384.166667,78.8333333 404.5,68.5 C415.5,59.8333333 422.5,54.1666667 425.5,51.5 C428.5,48.8333333 423.333333,60.6666667 410,87 C399,100.666667 392.666667,108.166667 391,109.5 C388.5,111.5 378.5,120 376.5,121.5 C375.166667,122.5 373.333333,127 371,135"
-                            id="Path-12"></path>
-                        <path
-                            d="M215.5,148 C223.833333,137.666667 234.5,132 247.5,131 C267,129.5 270,132 276.5,129.5 C283,127 293.579955,110.424424 296,111.5 C298.420045,112.575576 285.5,130 285.5,133.5 C285.5,137 289.867584,137.677831 299.5,134 C305.921611,131.548112 310.254944,128.381446 312.5,124.5 L333,105 C344.930979,95.1634681 350.264312,91.9968014 349,95.5 C347.103532,100.754798 335,115.979167 328.5,121.739583 C322,127.5 324.164944,134.563552 326,137 C327.835056,139.436448 334,141 341.5,139 C349,137 358.788819,115.929606 362,117 C365.211181,118.070394 351.5,143.5 353.5,145.5"
-                            id="Path-13"></path>
-                        <g id="Open-Mouth" class="chicken_f2_static hideonoff" stroke="#FFF19B"
-                            transform="translate(123.000000, 175.000000)">
-                            <path d="M21,46 L49,54" id="Path-16"></path>
-                            <path
-                                d="M17,29 C30.5193679,13.9343256 35.8527012,5.10099232 33,2.5 C28.7209481,-1.40148847 16.5,-2 0,13.5"
-                                id="Path-17"></path>
-                        </g>
-                        <g id="Chicken-F2-STATIC-EYE" class="chicken_f2_static hideonoff" stroke="#FFF19B"
-                            transform="translate(77.000000, 202.000000)">
-                            <path d="M30,21 L0.5,6.5" id="Path-14"></path>
-                            <path d="M22.5,0.5 L8,26" id="Path-15"></path>
-                        </g>
-                    </g>
-                    <!--   End of chicken f2 -->
-
-
-
-                </svg>
-            </div>
+    <div id="bingoIntro" class="bingoIntro">
+        <div class="winnerText" id="winnerText">
+            <h1>Winner Card</h1>
+        </div>
+        <div class="bingoDesc" id='bingoDesc'>
+            <h1>Miss Ballantine </h1>
+            <p style="margin-right: 1rem">Low Budget Bingo</p>
+        </div>
+        <div class="winnerCard" id="winnerCard">
+        </div>
+        <div class="genNum" id="genNum">
+            <p></p>
+            <h3>Try to Play Bingo!</h3>
+            <input type="text" id="numberInput" class="numberInput" placeholder="Input Number Of Cards"><br>
+            <button onclick="generateNewCard()" class="generateButton" id='generateButton'>GENERATE NEW CARD</button>
         </div>
     </div>
-    <script>
-        const signs = document.querySelectorAll('x-sign')
-        const randomIn = (min, max) => (
-            Math.floor(Math.random() * (max - min + 1) + min)
-        )
+    <div class='cardPlay' id='cardPlay'></div>
+    <div class='drawBall' id='drawBall'>
+        <h1 id='ballDrawns' class='ballDrawns'>0</h1>
+        <button onclick="Draw()" class="drawButton">DRAW BALL</button>
+        <button onclick="clearAll()" id='clearButton' class="clearButton">CLEAR</button>
 
-        const mixupInterval = el => {
-            const ms = randomIn(2000, 4000)
-            el.style.setProperty('--interval', `${ms}ms`)
+    </div>
+    <script>
+        // Description:    Creates an Array where matrix serves as the multidimensional array
+        // 					and usedNum array will be the storage of 1-75 numbers
+        // 					this two will be used in creating instances for our class
+
+        let matrix = new Array();
+        let usedNum = new Array();
+
+
+        //  Description:    Here we created a variable which value is the tags which we call using their id
+        // -------------------------------------------------
+
+        let bingoHeader = document.getElementById('bingoHeader');
+        let bingoIntro = document.getElementById('bingoIntro');
+        let textbox = document.getElementById('numberInput');
+        let drawBallDiv = document.getElementById('drawBall');
+        let bingoDesc = document.getElementById('bingoDesc');
+        let cloneDiv1 = document.getElementById('cloneDiv1');
+        let winnerCard = document.getElementById('winnerCard');
+        let winnerText = document.getElementById('winnerText');
+
+
+        //  Function:      	generateNewCard
+        //  Description:    generates card and creating instances for BingoCard class
+        // -------------------------------------------------
+
+        function generateNewCard() {
+
+            // this will be the users input number of cards
+
+            let input = document.getElementById('numberInput').value;
+            // error cheking
+            if (isNaN(input)) {
+                alert("You must input a Number");
+                textbox.value = '';
+            } else if (textbox.value == '') {
+                alert("  Input Number Of Cards")
+            } else {
+
+                // creating new instances for the class BingoCard
+
+                let Bingo = new BingoCard(matrix, usedNum, input);
+                // calling BingoCard methods
+                Bingo.drawCard();
+                // this is responsible for the design switching
+                drawBallDiv.style.display = 'block';
+                bingoIntro.style.display = 'none';
+                bingoHeader.style.display = 'block';
+                winnerCard.style.display = 'none';
+                winnerCard.innerHTML = '';
+            }
         }
 
-        signs.forEach(el => {
-            mixupInterval(el)
-            el.addEventListener('webkitAnimationIteration', () => {
-                mixupInterval(el)
-            })
-        })
+
+        //  Function:      	Draw
+        //  Description:    Draws ball for the game and creating instances for BallDraw class
+        // -------------------------------------------------	
+        function Draw() {
+            let input = document.getElementById('numberInput').value;
+            let ballDraw = new BallDraw(matrix, usedNum, input);
+            ballDraw.drawBall();
+            ballDraw.getCardWinner();
+
+        }
+
+        //  Function:      	clearAll
+        //  Description:    clear all table data 
+
+
+        function clearAll() {
+            let input = document.getElementById('numberInput').value;
+            let ballDraw = new BallDraw(matrix, usedNum, input);
+            let dlete = confirm("Delete all Cards?")
+
+            if (dlete) {
+                ballDraw.deleteBallDrawn();
+                textbox.value = '';
+                document.getElementById('cardPlay').innerHTML = "";
+                matrix.length = '';
+                drawBallDiv.style.display = 'none';
+                bingoIntro.style.display = 'flex';
+                bingoHeader.style.display = 'none';
+                bingoDesc.style.display = 'block';
+                winnerCard.style.display = 'none';
+                winnerText.style.display = 'none';
+
+            }
+
+        }
     </script>
+    <script>
+        class BingoCard {
+
+            constructor(matrix, usedNum, input) {
+                this.matrix = matrix;
+                this.arr = new Array(0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4);
+                this.usedNum = usedNum;
+                this.input = input;
+            }
+
+            //  Function:       getRandomNumber
+            //  Description:    Generates random numbers
+
+            getRandomNum() {
+                return Math.floor(Math.random() * 15);
+            }
+
+            //  Function:       addArrayList
+            //  Description:    Creates an array of 75 and inserting it in the this.usedNum array
+
+
+            addArrayList() {
+                for (let a = 0; a < 76; a++) {
+                    this.usedNum[a] = a;
+                }
+            }
+
+
+            //  Function:       generateMatrix
+            //  Description:    generates numbers for our bingo card and store in 
+            //					a 2 dimensional array which is the this.matrix array
+            // 					also returns this.matrix
+
+
+            generateMatrix() {
+
+                // here we will get the user input number and make a 2 dimensional array
+
+                for (let i = 0; i < this.input; i++) {
+                    this.addArrayList();
+                    this.matrix[i] = new Array();
+
+                    // this one will generate random numbers and store it in a multi dimensional array
+                    // we use do wile loop to avoid duplication of numbers 
+
+                    for (let j = 0; j < 25; j++) {
+                        let ranNum = (this.arr[j] * 15) + this.getRandomNum() + 1;
+
+                        do {
+                            ranNum = (this.arr[j] * 15) + this.getRandomNum() + 1;
+                        }
+                        while (this.usedNum.indexOf(ranNum) == -1);
+
+                        this.matrix[i].push(ranNum);
+                        this.usedNum.splice(usedNum.indexOf(ranNum), 1);
+                    }
+                }
+
+                return this.matrix;
+
+            }
+
+
+            //  Function:       drawcard
+            //  Description:   responsible for creating table and putting values in every cell
+            // -------------------------------------------------
+
+            drawCard() {
+
+                this.generateMatrix();
+
+                let cardForm = document.getElementById('cardForm');
+                let arr = ['B', 'I', 'N', 'G', 'O'];
+
+                // this loop will create a div tag with id and class which becomes the container of our table
+                // and append to another div which we created in html file
+
+                for (let k = 0; k < this.input; k++) {
+                    let setIdName = 'div' + k;
+                    let newDiv = document.createElement('div');
+                    let cardPlay = document.getElementById('cardPlay');
+                    newDiv.setAttribute('id', setIdName);
+                    newDiv.setAttribute('class', 'tableContainers')
+                    cardPlay.appendChild(newDiv);
+                }
+
+                // this loop is where we create a table body for our card
+
+                for (let b = 0; b < this.input; b++) {
+                    let count = 0;
+                    let idName = 'div' + b;
+                    let tableId = 'table' + b;
+                    let newTable = document.createElement('table');
+                    let thRow = newTable.insertRow(0);
+                    thRow.setAttribute('class', 'theads');
+                    newTable.setAttribute('id', tableId);
+                    newTable.setAttribute('class', 'tables');
+
+                    // this loop inserts first row in our table which contains the
+                    // header of our card which is the B, I, N, G, O
+                    for (let c = 0; c < 5; c++) {
+                        let thCell = thRow.insertCell(c);
+                        thCell.innerHTML = `<b>${arr[c]}</b>`;
+                        thCell.setAttribute('class', 'tHeader');
+                    }
+
+                    // here is the process of inserting cells in the table and putting value on  each cell
+                    // --------------------------------------
+
+                    for (let d = 1; d <= 5; d++) {
+                        let rowId = 'row' + d;
+                        let newRow = newTable.insertRow(d);
+                        newRow.setAttribute('id', rowId);
+                        for (let e = 0; e < 5; e++) {
+                            let newCell = newRow.insertCell(e);
+                            let cellId = 'cell' + b + d + e;
+                            newCell.setAttribute('id', cellId);
+                            if (d == 3 && e == 2) {
+                                newCell.innerHTML = `<b>${"FREE"}</b>`;
+                                newCell.setAttribute('style', 'background: red');
+                            } else {
+                                newCell.innerHTML = `<b>${this.matrix[b][count]}</b>`;
+                            }
+                            count++;
+                        }
+
+                    }
+                    // here we append the table on its container the div that we on the first loop
+                    document.getElementById(idName).appendChild(newTable);
+
+                }
+                this.addArrayList();
+
+            }
+        }
 
 
 
 
+
+        class BallDraw extends BingoCard {
+
+            constructor(matrix, usedNum, input) {
+                super(matrix, usedNum, input);
+                this.ballArray = new Array();
+                this.winner = false;
+            }
+
+            //  Function:      	markCard
+            //  Description:    setting background for a specific cell
+            // -------------------------------------------------
+
+            markCard(n) {
+                return n.setAttribute('style', 'background: orange');
+            }
+
+            //  Function:       drawBall
+            //  Description:   generate a random number (1-75) per user click on the “DRAW BALL” button to be stored in its “ballDrawns” property.
+            // generates random numbers from 1-75 and if the number matches
+            // 					on the value of the cell the markCard will be executed
+            // -------------------------------------------------
+
+            drawBall() {
+                let tableCell;
+                let ballDrawn = Math.floor(Math.random() * 75);
+                do {
+                    ballDrawn = Math.floor(Math.random() * 75 + 1);
+                }
+                while (usedNum.indexOf(ballDrawn) == -1);
+
+                this.usedNum.splice(this.usedNum.indexOf(ballDrawn), 1);
+
+                for (let n = 0; n < this.input; n++) {
+
+                    for (let z = 1; z < 6; z++) {
+                        for (let x = 0; x < 5; x++) {
+                            let tblCell = 'cell' + n + z + x;
+                            tableCell = document.getElementById(tblCell);
+
+                            if (tableCell.innerText == ballDrawn) {
+                                this.markCard(tableCell);
+                                tableCell = true;
+                            }
+
+                        }
+                    }
+
+                }
+                document.getElementById('ballDrawns').innerHTML = ballDrawn;
+
+            }
+
+
+            //  Function:       deletBallDrawn
+            //  Description:    setting the value of p tag into 0
+            // -------------------------------------------------
+
+            deleteBallDrawn() {
+                return document.getElementById('ballDrawns').innerHTML = '0';
+
+            }
+
+
+            //  Function:       getCardWinner
+            //  Description:    getting the clone of the the card that has a combination of 5 cells 
+            // 					with orange color horizontally and appneding it into a div that store
+            // 					the winner card
+            // -------------------------------------------------
+
+            getCardWinner() {
+                let bingoHeader = document.getElementById('bingoHeader');
+                let bingoIntro = document.getElementById('bingoIntro');
+                let textbox = document.getElementById('numberInput');
+                let genButton = document.getElementById('generateButton');
+                let drawBallDiv = document.getElementById('drawBall');
+                let bingoDesc = document.getElementById('bingoDesc');
+                let winnerCard = document.getElementById('winnerCard');
+                let genNum = document.getElementById('genNum');
+                let winnerText = document.getElementById('winnerText');
+
+
+
+                for (let uno = 0; uno < this.input; uno++) {
+                    let cloneDivId = 'div' + uno;
+                    for (let dos = 1; dos < 6; dos++) {
+                        for (let tres = 0; tres < 5; tres++) {
+                            let cell = 'cell' + uno + dos + tres;
+                            this.ballArray.push(cell);
+                        }
+                        let cell1 = document.getElementById(this.ballArray[0]);
+                        let cell2 = document.getElementById(this.ballArray[1]);
+                        let cell3 = document.getElementById(this.ballArray[2]);
+                        let cell4 = document.getElementById(this.ballArray[3]);
+                        let cell5 = document.getElementById(this.ballArray[4]);
+
+                        if (cell1.hasAttribute('style') && cell2.hasAttribute('style') && cell3.hasAttribute(
+                                'style') &&
+                            cell4.hasAttribute('style') && cell5.hasAttribute('style')) {
+                            this.winner = true;
+                            this.ballArray.splice(0, 5);
+                            break;
+
+                        } else {
+                            this.ballArray.splice(0, 5);
+
+
+                        }
+                    }
+                    if (this.winner) {
+                        let itm = document.getElementById(cloneDivId);
+                        let cln = itm.cloneNode(true);
+                        cln.setAttribute('class', 'cloneDiv1');
+                        cln.removeAttribute('id');
+                        winnerCard.appendChild(cln);
+
+                        document.getElementById('numberInput').value = '';
+                        document.getElementById('cardPlay').innerHTML = "";
+                        bingoDesc.style.display = 'none';
+                        winnerCard.style.display = 'flex';
+                        drawBallDiv.style.display = 'none';
+                        bingoIntro.style.display = 'flex';
+                        bingoHeader.style.display = 'none';
+                        winnerText.style.display = 'block';
+                        this.matrix.length = '';
+                        this.deleteBallDrawn();
+                        this.winner = false;
+                        break;
+
+                    }
+
+                }
+
+            }
+
+        }
+    </script>
 </body>
 
 </html>
