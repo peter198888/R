@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            line-height: 40%;
+            background: hsla(193, 67%, 76%, 1);
+            background: linear-gradient(135deg, rgb(222, 88, 88) 0%, rgb(250, 195, 92) 100%);
+
+            background: -moz-linear-gradient(135deg, rgb(194, 77, 64) 0%, rgb(250, 205, 92) 100%);
+
+            background: -webkit-linear-gradient(135deg, hsla(193, 67%, 76%, 1) 0%, rgb(250, 195, 92) 100%) no-repeat center center fixed;
+
+            filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#98D9EB", endColorstr="#FA5C94", GradientType=1);
+
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .header {
+            width: 70%;
+            height: auto;
+            background: rgb(0, 191, 255, 5%);
+            margin-top: 100px;
+            padding: 50px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            border-top-right-radius: 15px;
+            border-top-left-radius: 15px;
+            border: 2px solid hsla(193, 67%, 76%, 80%);
+            -webkit-box-shadow: 0px 3px 10px 1px rgba(0, 191, 255, 0.41);
+            box-shadow: 0px 3px 10px 1px rgba(0, 191, 255, 0.41);
+            line-height: 40%;
+        }
+
+        .body {
+            width: 70%;
+            height: 90%;
+            background: rgb(0, 191, 255, 5%);
+            margin-top: 5px;
+            padding: 50px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid hsla(193, 67%, 76%, 80%);
+            -webkit-box-shadow: 0px 3px 10px 1px rgba(0, 191, 255, 0.41);
+            box-shadow: 0px 3px 10px 1px rgba(0, 191, 255, 0.41);
+            line-height: 40%;
+        }
+
+        .footer {
+            width: 70%;
+            height: auto;
+            background: rgb(0, 191, 255, 5%);
+            margin-top: 5px;
+            margin-bottom: 100px;
+            padding: 50px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            border-bottom-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            border: 2px solid hsla(193, 67%, 76%, 80%);
+            -webkit-box-shadow: 0px 3px 10px 1px rgba(0, 191, 255, 0.41);
+            box-shadow: 0px 3px 10px 1px rgba(0, 191, 255, 0.41);
+            line-height: 40%;
+        }
+
+        h1 {
+            color: #fa5ccd;
+            text-shadow: 0px 0px 3px #fad05c;
+            text-align: center;
+
+        }
+
+        p {
+            text-align: center;
+            color: rgb(9, 9, 9);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        input[type=text],
+        select,
+        textarea {
+            margin-bottom: 20px;
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #fabb5c;
+            resize: vertical;
+            background: rgb(0, 191, 255, 10%);
+            color: #fac85c;
+            outline: none;
+            transition: 0.2s ease-in-out;
+        }
+
+        input[type=text]::placeholder,
+        textarea::placeholder,
+        select::placeholder {
+            /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: rgb(247, 72, 72);
+            opacity: 1;
+            /* Firefox */
+        }
+
+        input[type=text]:-ms-input-placeholder {
+            /* Internet Explorer 10-11 */
+            color: rgba(231, 53, 53, 0.992);
+        }
+
+        input[type=text]::-ms-input-placeholder {
+            /* Microsoft Edge */
+            color: rgb(244, 65, 65);
+        }
+
+        input[type=text]:focus,
+        input[type=text]:active,
+        input[type=text]:hover,
+        textarea:focus,
+        textarea:active,
+        textarea:hover,
+        select:focus,
+        select:active,
+        select:hover {
+            background-color: rgb(248, 245, 245);
+            border: 2px solid #e7c424;
+            box-shadow: 0px 3px 10px 1px #f4c047;
+        }
+
+        label {
+            padding: 12px 12px 12px 0;
+            display: inline-block;
+            color: #080808;
+            font-size: 25px;
+        }
+
+        input[type=submit] {
+            background-color: #f6c936;
+            color: #f04949;
+            padding: 12px 20px;
+            border: 2px solid #f7bb09;
+            cursor: pointer;
+            float: right;
+            margin-top: 10px;
+            width: 100%;
+            transition: 0.1s ease-in;
+        }
+
+        input[type=submit]:hover {
+            background-color: transparent;
+            border: 2px solid #f6bf09;
+            color: #fbc246;
+            box-shadow: 0px 3px 10px 1px #f6bc28;
+
+        }
+
+        .container {
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        .col-25 {
+            float: left;
+            width: 100%;
+            margin-top: 6px;
+        }
+
+        .col-75 {
+            float: left;
+            width: 100%;
+            margin-top: 6px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+
+            .col-25,
+            .col-75,
+            input[type=submit] {
+                width: 100%;
+                margin-top: 0;
+            }
+
+            .header {
+                margin-top: 20px;
+            }
+
+            .footer {
+                margin-bottom: 20px;
+            }
+
+            label {
+                font-size: 18px;
+            }
+
+            .header,
+            .body,
+            .footer {
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            .header>h1 {
+                font-size: 35px;
+                color: #f27567;
+                border: none;
+                text-shadow: none;
+            }
+        }
+
+        /*startColorstr="#98D9EB", endColorstr="#FA5C94",*/
+    </style>
+</head>
+
+<body>
+
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    </head>
+
+    <div class="header">
+        <h1>Missballantine</h1>
+        <p>Ik wil meer informatie</p>
+    </div>
+    <div class="body">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">Voornaam</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                    <output></output>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Achternaam</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="country">Plaats</label>
+                </div>
+                <div class="col-75">
+                    <select id="country" name="country">
+                        <option value="Amsterdam">Amsterdam</option>
+                        <option value="Almere">Almere</option>
+                        <option value="Alkmaar">Alkmaar</option>
+                        <option value="Arnhem">Arnhem</option>
+                        <option value="Amstelveen">Amstelveen</option>
+                        <option value="Appingendam">Appingendam</option>
+                        <option value="Bergen Op Zoom">Bergen Op Zoom</option>
+                        <option value="Breda">Breda</option>
+                        <option value="Den Haag">Den Haag</option>
+                        <option value="Den Helder"> Den Helder</option>
+                        <option value="Den Bosch">Den Bosch</option>
+                        <option value="Deventer">Deventer</option>
+                        <option value="Drente">Drente</option>
+                        <option value="Dordrecht ">Dordrecht</option>
+                        <option value="Eindhoven">Eindhoven</option>
+                        <option value="Friesland">Friesland</option>
+                        <option value="Groningen">Groningen</option>
+                        <option value="Goes">Goes</option>
+                        <option value="Gelderland">Gelderland</option>
+                        <option value="Haarlem">Haarlem</option>
+                        <option value="Heerlen">Heerlen</option>
+                        <option value="Laren">Laren</option>
+                        <option value="Lelystad">Lelystad</option>
+                        <option value="Leiden">Leiden</option>
+                        <option value="Leerdam">Leerdam</option>
+                        <option value="Maastricht">Maastricht</option>
+                        <option value="Nijmegen">Nijmegen</option>
+                        <option value="Overijssel"> Overijssel</option>
+                        <option value="Overschie">Overschie</option>
+                        <option value="Rotterdam">Rotterdam</option>
+                        <option value="Tegelen ">Tegelen</option>
+                        <option value="Utrecht">Utrecht</option>
+                        <option value="Uddel">Uddel</option>
+                        <option value="Veenendaal ">Veenendaal</option>
+                        <option value="Wateringen">Wateringen</option>
+                        <option value="Ypenburg">Ypenburg</option>
+                        <option value="Zaamdam ">Zaandam</option>
+                        <option value="Zevenbergen">Zevenbergen</option>
+                        <option value="Zeeland">Zeeland</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="mailto">Bericht</label>
+                </div>
+                <div class="col-75">
+                    <textarea id="subject" name="subject" placeholder="Write something.."
+                        style="height:200px"></textarea>
+                </div>
+            </div>
+            <form action="mailto:ganelly1982@gmail.com" method="GET">
+                <input name="subject" type="text" />
+                <textarea name="body"></textarea>
+                <input type="submit" value="Send" />
+            </form>
+            <div class="row">
+
+            </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h1>MissBallantine.com</h1>
+        <p>Voel jezelf vrij.</p>
+    </div>
+    <div>console.log("user-select")</div>
+
+
+
+    <script>
+        const userInfo = JSON.parse(document.getElementById("data").text);
+        console.log("User information: %o", userInfo);
+    </script>
+    <h1>all rights reserved</h1>
+    <p>Missballantine 2023</p>
+
+    <p id="demo"></p>
+
+    <script>
+        class Car {
+            constructor(name, year) {
+                this.name = name;
+                this.year = year;
+
+            }
+            age() {
+                const date = new Date();
+                return date.getFullYear() - this.year;
+                return date.getMonth() - this.month;
+            }
+        }
+
+        const myCar = new Car("Ford", 2023);
+        document.getElementById("demo").innerHTML =
+            "Deze site is " + myCar.age() + " Jaar oud.";
+    </script>
+
+
+
+</body>
+
+</html>
