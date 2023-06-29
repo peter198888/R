@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@200;600&family=Raleway&family=Train+One&display=swap');
+
+
+
+        *,
+        *:before,
+        *:after {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: #000;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .this_form {
+            width: 400px;
+            margin: 150px auto;
+            text-align: center;
+            position: relative;
+        }
+
+
+        .this_form fieldset {
+            background: #000;
+            border-bottom: 0.15em solid #FFE45E;
+            border-left: 0.15em solid #FFE45E;
+            border-top: none;
+            border-right: none;
+            padding: 20px 30px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .this_form fieldset:not(:first-of-type) {
+            display: none;
+        }
+
+        .this_form input,
+        .this_form textarea {
+            padding: 15px;
+            background: none;
+            border-bottom: 0.15em solid #70FFF5;
+            border-left: 0.15em solid #70FFF5;
+            border-top: none;
+            border-right: none;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            font-weight: bold;
+            font-family: 'Archivo', sans-serif;
+            color: #fff;
+            font-size: 13px;
+        }
+
+        .this_form .action-button {
+            text-transform: uppercase;
+            width: 140px;
+            background-color: #70FFF5;
+            background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.86' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+            font-weight: bold;
+            color: #000;
+            border: 0.05em solid #70FFF5;
+            cursor: pointer;
+            padding: 10px 10px;
+            margin: 10px 10px;
+            font-family: 'Archivo', sans-serif;
+            font-weight: bold;
+            font-size: 1.9em;
+        }
+
+        .this_form .action-button:hover,
+        .this_form .action-button:focus {
+            background-color: #000000;
+            background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2370FFF5' fill-opacity='0.86' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+            color: #fff;
+        }
+
+        .title {
+            font-size: 1.5em;
+            text-transform: uppercase;
+            text-decoration: underline 0.05em solid #FFE45E;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        .progressbar {
+            margin-bottom: 30px;
+            overflow: hidden;
+            counter-reset: step;
+        }
+
+        .progressbar li {
+            list-style-type: none;
+            color: white;
+            text-transform: uppercase;
+            font-size: 9px;
+            width: 33.33%;
+            float: left;
+            position: relative;
+        }
+
+        .progressbar li:before {
+            content: counter(step);
+            counter-increment: step;
+            width: 40px;
+            height: 40px;
+            line-height: 1em;
+            display: block;
+            font-size: 3.5em;
+            font-weight: bold;
+            color: #474747;
+            border: 0.1em solid #474747;
+            background: #000;
+            border-radius: 50%;
+            margin: 0 auto 5px auto;
+            font-family: 'Train One', cursive;
+        }
+
+        .progressbar li:after {
+            content: '';
+            width: 100%;
+            height: 7px;
+            background: #000;
+            border: 0.1em solid #474747;
+            position: absolute;
+            left: -50%;
+            top: 2em;
+            z-index: -1;
+        }
+
+        .progressbar li:first-child:after {
+            content: none;
+        }
+
+        .progressbar li.active:before,
+        .progressbar li.active:after {
+            background: #000;
+            color: #FFE45E;
+            border: .1em solid #FFE45E;
+        }
+
+        .step-three-form {
+            color: #fff;
+            position: relative;
+            left: 5em;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            padding: 20px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .xx {
+            top: 1em;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            position: relative;
+        }
+
+        .container {
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            position: absolute;
+            margin: auto;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+
+
+        // checkbox styles
+
+        .form-group {
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .form-group input {
+            // padding: 20px;
+            height: initial;
+            width: initial;
+            margin-bottom: 0;
+            display: none;
+            cursor: pointer;
+        }
+
+        .form-group label {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .form-group label:before {
+            content: '';
+            -webkit-appearance: none;
+            background-color: transparent;
+            border: 0.1em solid #70FFF5;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+            padding: 10px;
+            display: inline-block;
+            position: relative;
+            vertical-align: middle;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+
+        .form-group input:checked+label:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 2px;
+            left: 9px;
+            width: 6px;
+            height: 14px;
+            border: 0.2em solid #70FFF5;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+
+
+
+
+        /*  sm btn styles  */
+        .twitter-btn {
+            position: fixed;
+            margin: auto;
+            bottom: 0;
+            background-color: #1da1f2;
+            border: 0.15em solid #1da1f2;
+            border-left: none;
+            border-bottom: none;
+            border-radius: 0% 100% 0% 0% / 0% 100% 0% 93%;
+            height: 50px;
+            width: 50px;
+            cursor: pointer;
+        }
+
+        .in-btn {
+            position: fixed;
+            margin: auto;
+            bottom: 0;
+            right: 0;
+            border: 0.15em solid #0072b1;
+            border-right: none;
+            border-bottom: none;
+            border-radius: 100% 0% 0% 0% / 100% 0% 0% 0%;
+            background-color: #0072b1;
+            height: 50px;
+            width: 50px;
+            cursor: pointer;
+        }
+
+        .fa-twitter {
+            position: absolute;
+            left: 0em;
+            right: .4em;
+            top: .5em;
+            bottom: 0;
+            color: #fff;
+            font-size: 1.8em;
+        }
+
+        .fa-linkedin-in {
+            position: absolute;
+            left: .4em;
+            right: 0em;
+            top: .55em;
+            bottom: 0;
+            color: #fff;
+            font-size: 1.8em;
+        }
+
+        .in-btn:hover {
+            background-color: #000;
+        }
+
+        .twitter-btn:hover {
+            background-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form class="this_form">
+
+            <ul class="progressbar">
+                <li class="active"></li>
+
+                <li></li>
+                <li></li>
+            </ul>
+
+
+            <fieldset>
+                <h2 class="title">Create your account</h2>
+                <!--     <div class="hr"></div> -->
+                <input type="text" name="email" placeholder="Email" />
+                <input type="password" name="pass" placeholder="Password" />
+                <input type="password" name="cpass" placeholder="Confirm Password" />
+                <input type="button" name="next" class="next action-button" value="Next" />
+            </fieldset>
+            <fieldset>
+                <h2 class="title">Link your accounts</h2>
+                <!--  <div class="hr"></div> -->
+                <input type="text" name="twitter" placeholder="Twitter" />
+                <input type="text" name="linkedin" placeholder="LinkedIn" />
+                <input type="text" name="insta" placeholder="Instagram" />
+                <input type="button" name="previous" class="previous action-button" value="Back" />
+                <input type="button" name="next" class="next action-button" value="Next" />
+            </fieldset>
+
+
+            <fieldset>
+                <h2 class="title">Confirm</h2>
+                <!--     <div class="hr"></div> -->
+                <div class="step-three-form">
+                    <div class="form-group">
+                        <input type="checkbox" id="html">
+                        <label for="html">SPAM ME!</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="checkbox" id="css">
+                        <label for="css">ACCEPT TOS!</label>
+                    </div>
+                </div>
+
+
+
+                <input type="button" name="back" class="previous action-button" value="back" />
+                <input type="submit" name="submit" class="submit action-button" value="Submit" />
+
+
+            </fieldset>
+        </form>
+
+
+    </div>
+    <script>
+        var current, next, previous;
+        var left, opacity, scale;
+        var animating;
+
+        $(".next").click(function () {
+            if (animating) return false;
+            animating = true;
+
+            current = $(this).parent();
+            next = $(this).parent().next();
+
+
+            $(".progressbar li").eq($("fieldset").index(next)).addClass("active");
+
+
+            next.show();
+            current.animate({
+                opacity: 0
+            }, {
+                step: function (now, mx) {
+                    scale = 1 - (1 - now) * 0.2;
+                    left = (now * 50) + "%";
+                    opacity = 1 - now;
+                    current.css({
+                        'transform': 'scale(' + scale + ')',
+                        'position': 'absolute'
+                    });
+                    next.css({
+                        'left': left,
+                        'opacity': opacity
+                    });
+                },
+                duration: 800,
+                complete: function () {
+                    current.hide();
+                    animating = false;
+                },
+                easing: 'easeInOutBack'
+            });
+        });
+
+        $(".previous").click(function () {
+            if (animating) return false;
+            animating = true;
+
+            current = $(this).parent();
+            previous = $(this).parent().prev();
+
+            $(".progressbar li").eq($("fieldset").index(current)).removeClass("active");
+
+            previous.show();
+            current.animate({
+                opacity: 0
+            }, {
+                step: function (now, mx) {
+                    scale = 0.8 + (1 - now) * 0.2;
+                    left = ((1 - now) * 50) + "%";
+                    opacity = 1 - now;
+                    current.css({
+                        'left': left
+                    });
+                    previous.css({
+                        'transform': 'scale(' + scale + ')',
+                        'opacity': opacity
+                    });
+                },
+                duration: 800,
+                complete: function () {
+                    current.hide();
+                    animating = false;
+                },
+                easing: 'easeInOutBack'
+            });
+        });
+
+        $(".submit").click(function () {
+            return false;
+        })
+    </script>
+
+
+    <!-- sm btns -->
+    <a href="https://twitter.com/cmlohr"><button class="twitter-btn"><i class="fab fa-twitter"></i></button></a>
+
+    <a href="https://www.linkedin.com/in/cmlohr/"><button class="in-btn"><i class="fab fa-linkedin-in"></i></button></a>
+</body>
+
+</html>
